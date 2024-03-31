@@ -1,0 +1,41 @@
+[
+    {
+        "id": 1,
+        "tipo": "fruta",
+        "productos": ["Frutilla", "Manzana", "Naranja", "Plátano", "Uva"],
+        "region": "Región Metropolitana de Santiago",
+        "comuna": "Cerrillos"
+    },
+
+    {
+        "id": 2,
+        "tipo": "verdura",
+        "productos": ["Lechuga", "Pepino", "Tomate", "Zanahoria"],
+        "region": "Región del Maule",
+        "comuna": "Talca"
+    },
+
+    {
+        "id": 3,
+        "tipo": "verdura",
+        "productos": ["Remolacha", "Zanahoria", "Papa", "Cebolla"],
+        "region": "Región de la Araucanía",
+        "comuna": "Temuco"
+    },
+
+    {
+        "id": 4,
+        "tipo": "fruta",
+        "productos": ["Durazno"],
+        "region": "Región de Los Lagos",
+        "comuna": "Puerto Montt"
+    },
+
+    {
+        "id": 5,
+        "tipo": "verdura",
+        "productos": ["Haba"],
+        "region": "Región de Magallanes y de la Antártica Chilena",
+        "comuna": "Punta Arenas"
+    }
+]
