@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    </head>
     <body>
         <title>Feria Online OMG</title>
         <h1> Ver Productos </h1>
@@ -14,7 +16,7 @@
             <a href="ver-productos.html"> ver-productos </a>
         </div>
         <div>
-            <table id="tabla-productos">
+            <table id="tabla-productos" class="table table-striped">
                 <thead>
                     <tr>
                         <th>Tipo</th>
@@ -24,17 +26,11 @@
                         <th>Fotos</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr id="lista-productos">
-                        <td>Manzana</td>
-                        <td>Fruta roja</td>
-                        <td>Metropolitana</td>
-                        <td>Providencia</td>
-                        <td>Jose Perez</td>
-                    </tr>
+                <tbody id="lista-productos">
                 </tbody>
             </table>
         </div>
         <script src="../js/ver-productos.js"></script>
+        <script src="../bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
     </body>
 </html>

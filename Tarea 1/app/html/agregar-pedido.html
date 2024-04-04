@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head></head>
+    <body>
         <title>Feria Online OMG</title>
         <h1> Agregar Pedido </h1>
         <div>
@@ -12,4 +13,46 @@
             <a href="ver-pedidos.html"> ver-pedidos </a>
             <a href="ver-productos.html"> ver-productos </a>
         </div>
-    </head>
+        <div>
+            <form class="formulario" id="agregar-producto">
+                <div id="tipo-producto" class="grupo-input">
+                    <label for="tipo-producto">Tipo de producto</label>
+                    <select name="tipo-producto" id="tipo-prod">
+                        <option value="fruta">Fruta</option>
+                        <option value="verdura">Verdura</option>
+                    </select>
+                </div>
+                <div id="Producto" class="grupo-input">
+                    <label for="Producto"> Producto </label>
+                    <select name="Producto" id="producto-select"></select>
+                </div>
+                <div id="Descripcion" class="grupo-input">
+                    <label for="Descripcion">Descripcion</label>
+                    <textarea name="Descripcion" id="des" cols="50" rows="4"></textarea>
+                </div>
+                <div id="Regiones" class="grupo-input">
+                    <label for="Regiones">Regiones</label>
+                    <select name="Regiones" id="region-select"></select>
+                </div>
+                <div id="Comunas" class="grupo-input">
+                    <label for="Comunas">Comunas</label>
+                    <select name="Comunas" id="comuna-select"></select>
+                </div>
+                <div id="Nombre-Comprador" class="grupo-input">
+                    <label for="Nombre-Comprador">Nombre del Comprador</label>
+                    <input type="text" id="nombre-comp" name="Nombre-Comprador" size="80">
+                </div>
+                <div id="email-Comprador" class="grupo-input">
+                    <label for="email-Comprador">Email del Comprador</label>
+                    <input type="email" id="email-comp" name="email-Comprador" size="30">
+                </div>
+                <div id="telefono-Comprador" class="grupo-input">
+                    <label for="telefono-Comprador">Telefono del Comprador</label>
+                    <input type="tel" id="telefono-comp" name="telefono-Comprador" size="15">
+                </div>
+            </form>
+            <button id="agregar">Agregar Pedido</button>
+        </div>
+        <script src="../js/agregar-pedido.js"></script>
+    </body>
+</html>

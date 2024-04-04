@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "tipo": "Fruta",
+        "productos": ["Frutilla"],
+        "region": "Región Metropolitana de Santiago",
+        "comuna": "Cerrillos",
+        "imagen": "../img/Frutillas.jpg"
+    },
+
+    {
+        "id": 2,
+        "tipo": "Verdura",
+        "productos": ["Lechuga"],
+        "region": "Región del Maule",
+        "comuna": "Talca",
+        "imagen": "../img/Cultivo-Lechuga-shutterstock_123628498-2-scaled.jpg"
+    },
+
+    {
+        "id": 3,
+        "tipo": "Verdura",
+        "productos": ["Zapallo"],
+        "region": "Región de la Araucanía",
+        "comuna": "Temuco",
+        "imagen": "../img/zapallo.jpg"
+    },
+
+    {
+        "id": 4,
+        "tipo": "Fruta",
+        "productos": ["Durazno"],
+        "region": "Región de Los Lagos",
+        "comuna": "Puerto Montt",
+        "imagen": "../img/cultivo-de-durazno.webp"
+    },
+
+    {
+        "id": 5,
+        "tipo": "Verdura",
+        "productos": ["Haba"],
+        "region": "Región de Magallanes y de la Antártica Chilena",
+        "comuna": "Punta Arenas",
+        "imagen": "../img/habas.jpg"
+
+    }
+]
