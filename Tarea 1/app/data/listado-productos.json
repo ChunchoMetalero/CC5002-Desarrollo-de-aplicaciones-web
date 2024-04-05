@@ -3,8 +3,12 @@
         "id": 1,
         "tipo": "Fruta",
         "productos": ["Frutilla"],
+        "Descripcion": "Frutillas de la región metropolitana de Santiago, comuna de Cerrillos. 100% orgánicas y frescas.",
         "region": "Región Metropolitana de Santiago",
         "comuna": "Cerrillos",
+        "productor": "Don Juan",
+        "email":"donjuan@frutillas.cl",
+        "telefono": "+569 12345678",
         "imagen": "../img/Frutillas.jpg"
     },
 
@@ -12,8 +16,12 @@
         "id": 2,
         "tipo": "Verdura",
         "productos": ["Lechuga"],
+        "Descripcion": "Lechugas de la región del Maule, comuna de Talca. 100% orgánicas y frescas.",
         "region": "Región del Maule",
         "comuna": "Talca",
+        "productor": "Doña María",
+        "email":"donamarí@gmail.com",
+        "telefono": "+569 87654321",
         "imagen": "../img/Cultivo-Lechuga-shutterstock_123628498-2-scaled.jpg"
     },
 
@@ -21,8 +29,12 @@
         "id": 3,
         "tipo": "Verdura",
         "productos": ["Zapallo"],
+        "Descripcion": "Zapallos de la región de la Araucanía, comuna de Temuco. 100% orgánicos y frescos.",
         "region": "Región de la Araucanía",
         "comuna": "Temuco",
+        "productor": "Don Pedro",
+        "email":"donpedro@gmail.com",
+        "telefono": "+569 87654321",
         "imagen": "../img/zapallo.jpg"
     },
 
@@ -30,8 +42,12 @@
         "id": 4,
         "tipo": "Fruta",
         "productos": ["Durazno"],
+        "Descripcion": "Duraznos de la región de Los Lagos, comuna de Puerto Montt. 100% orgánicos y frescos.",
         "region": "Región de Los Lagos",
         "comuna": "Puerto Montt",
+        "productor": "Don Pablo",
+        "email":"donpablo@gmail.com",
+        "telefono": "+569 87654321",
         "imagen": "../img/cultivo-de-durazno.webp"
     },
 
@@ -39,9 +55,12 @@
         "id": 5,
         "tipo": "Verdura",
         "productos": ["Haba"],
+        "Descripcion": "Habas de la región de Magallanes y de la Antártica Chilena, comuna de Punta Arenas. 100% orgánicas y frescas.",
         "region": "Región de Magallanes y de la Antártica Chilena",
         "comuna": "Punta Arenas",
+        "productor": "Doña María",
+        "email":"donamarí@gmail.com",
+        "telefono": "+569 87654321",
         "imagen": "../img/habas.jpg"
-
     }
 ]

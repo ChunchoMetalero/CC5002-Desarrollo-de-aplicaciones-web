@@ -1,15 +1,50 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Feria Online OMG</title>
-        <h1> Informacion del Producto </h1>
-        <div>
-            <a href="index.html"> Inicio </a> 
-            <a href="agregar-pedido.html"> agregar-pedido </a>
-            <a href="agregar-producto.html"> agregar-producto </a>
-            <a href="informacion-pedido.html"> informacion-pedido </a>
-            <a href="informacion-producto.html"> informacion-producto </a>
-            <a href="ver-pedidos.html"> ver-pedidos </a>
-            <a href="ver-productos.html"> ver-productos </a>
-        </div>
-    </head>
+<head>
+    <title>Feria Online OMG - Informacion del Producto</title>
+</head>
+<body>
+    <h1> Informacion del Producto </h1>
+    <div>
+        <a href="index.html"> Inicio </a> 
+        <a href="agregar-pedido.html"> agregar-pedido </a>
+        <a href="agregar-producto.html"> agregar-producto </a>
+        <a href="informacion-pedido.html"> informacion-pedido </a>
+        <a href="informacion-producto.html"> informacion-producto </a>
+        <a href="ver-pedidos.html"> ver-pedidos </a>
+        <a href="ver-productos.html"> ver-productos </a>
+    </div>
+    <div>
+        <h2> Informacion del Producto </h2>
+        <p> Nombre: <span id="nombreProducto"></span></p>
+        <p> Descripcion: <span id="descripcionProducto"></span></p>
+        <p> Region: <span id="regionProducto"></span></p>
+        <p> Comuna: <span id="comunaProducto"></span></p>
+        <p> Productor: <span id="productorProducto"></span></p>
+        <p> Email: <span id="emailProducto"></span></p>
+        <p> Telefono: <span id="telefonoProducto"></span></p>
+        <p> Imagen: <img id="imagenProducto" src="" alt="Imagen del Producto" width='640' height='480'></p>
+    </div>
+    <script>
+        // Obtener los datos del producto desde el almacenamiento local
+        var producto = localStorage.getItem("producto");
+        if (producto) {
+            // Convertir el JSON a objeto JavaScript
+            producto = JSON.parse(producto);
+
+            // Mostrar los datos del producto en la página
+            document.getElementById("nombreProducto").textContent = producto.tipo;
+            document.getElementById("descripcionProducto").textContent = producto.Descripcion;
+            document.getElementById("regionProducto").textContent = producto.region;
+            document.getElementById("comunaProducto").textContent = producto.comuna;
+            document.getElementById("productorProducto").textContent = producto.productor;
+            document.getElementById("emailProducto").textContent = producto.email;
+            document.getElementById("telefonoProducto").textContent = producto.telefono;
+            // Agrega más líneas para los otros campos del producto (precio, cantidad, categoría, etc.)
+
+            // Si tienes la URL de la imagen, puedes establecerla así:
+            document.getElementById("imagenProducto").src = producto.imagen;
+        }
+    </script>
+</body>
+</html>
