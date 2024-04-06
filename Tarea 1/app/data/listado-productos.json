@@ -2,14 +2,17 @@
     {
         "id": 1,
         "tipo": "Fruta",
-        "productos": ["Frutilla"],
+        "productos": ["Frutillas"],
         "Descripcion": "Frutillas de la región metropolitana de Santiago, comuna de Cerrillos. 100% orgánicas y frescas.",
         "region": "Región Metropolitana de Santiago",
         "comuna": "Cerrillos",
         "productor": "Don Juan",
         "email":"donjuan@frutillas.cl",
         "telefono": "+569 12345678",
-        "imagen": "../img/Frutillas.jpg"
+        "img120": "../img/120x120/Frutillas.png",
+        "img640": "../img/640x480/Frutillas.png",
+        "img1280": "../img/1280x1024/Frutillas.png"
+
     },
 
     {
@@ -22,45 +25,54 @@
         "productor": "Doña María",
         "email":"donamarí@gmail.com",
         "telefono": "+569 87654321",
-        "imagen": "../img/Cultivo-Lechuga-shutterstock_123628498-2-scaled.jpg"
+        "img120": "../img/120x120/Lechugas.png",
+        "img640": "../img/640x480/Lechugas.png",
+        "img1280": "../img/1280x1024/Lechugas.png"
+
     },
 
     {
         "id": 3,
         "tipo": "Verdura",
-        "productos": ["Zapallo"],
+        "productos": ["Zapallos"],
         "Descripcion": "Zapallos de la región de la Araucanía, comuna de Temuco. 100% orgánicos y frescos.",
         "region": "Región de la Araucanía",
         "comuna": "Temuco",
         "productor": "Don Pedro",
         "email":"donpedro@gmail.com",
         "telefono": "+569 87654321",
-        "imagen": "../img/zapallo.jpg"
+        "img120": "../img/120x120/Zapallo.png",
+        "img640": "../img/640x480/Zapallo.png",
+        "img1280": "../img/1280x1024/Zapallo.png"
     },
 
     {
         "id": 4,
         "tipo": "Fruta",
-        "productos": ["Durazno"],
+        "productos": ["Duraznos"],
         "Descripcion": "Duraznos de la región de Los Lagos, comuna de Puerto Montt. 100% orgánicos y frescos.",
         "region": "Región de Los Lagos",
         "comuna": "Puerto Montt",
         "productor": "Don Pablo",
         "email":"donpablo@gmail.com",
         "telefono": "+569 87654321",
-        "imagen": "../img/cultivo-de-durazno.webp"
+        "img120": "../img/120x120/Duraznos.png",
+        "img640": "../img/640x480/Duraznos.png",
+        "img1280": "../img/1280x1024/Duraznos.png"
     },
 
     {
         "id": 5,
         "tipo": "Verdura",
-        "productos": ["Haba"],
+        "productos": ["Habas"],
         "Descripcion": "Habas de la región de Magallanes y de la Antártica Chilena, comuna de Punta Arenas. 100% orgánicas y frescas.",
         "region": "Región de Magallanes y de la Antártica Chilena",
         "comuna": "Punta Arenas",
         "productor": "Doña María",
         "email":"donamarí@gmail.com",
         "telefono": "+569 87654321",
-        "imagen": "../img/habas.jpg"
+        "img120": "../img/120x120/Habas.png",
+        "img640": "../img/640x480/Habas.png",
+        "img1280": "../img/1280x1024/Habas.png"
     }
 ]

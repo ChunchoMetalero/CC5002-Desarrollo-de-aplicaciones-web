@@ -1,0 +1,57 @@
+[
+    {
+        "id": 1,
+        "tipo": "Fruta",
+        "productos": ["Manzana"],
+        "descripcion": "Manzana roja",
+        "region": "Región Metropolitana de Santiago",
+        "comuna": "Santiago",
+        "comprador": "Juan Perez",
+        "emailComprador": "juanperez@gmail.com",
+        "telefonoComprador": "+569 12345678"
+    },
+    {
+        "id": 2,
+        "tipo": "Fruta",
+        "productos": ["Pera"],
+        "descripcion": "Pera verde",
+        "region": "Región de Valparaíso",
+        "comuna": "Viña del Mar",
+        "comprador": "María González",
+        "emailComprador": "mariagonzalez@gmail.com",
+        "telefonoComprador": "+569 87654321"
+    },
+    {
+        "id": 3,
+        "tipo": "Verdura",
+        "productos": ["Zanahoria"],
+        "descripcion": "Zanahoria fresca",
+        "region": "Región del Maule",
+        "comuna": "Talca",
+        "comprador": "Pedro Ramirez",
+        "emailComprador": "pedroramirez@gmail.com",
+        "telefonoComprador": "+569 11223344"
+    },
+    {
+        "id": 4,
+        "tipo": "Fruta",
+        "productos": ["Plátano"],
+        "descripcion": "Plátano maduro",
+        "region": "Región del Biobío",
+        "comuna": "Concepción",
+        "comprador": "Ana López",
+        "emailComprador": "analopez@gmail.com",
+        "telefonoComprador": "+569 55443322"
+    },
+    {
+        "id": 5,
+        "tipo": "Verdura",
+        "productos": ["Espinaca"],
+        "descripcion": "Espinaca fresca",
+        "region": "Región de O'Higgins",
+        "comuna": "Rancagua",
+        "comprador": "Carlos Soto",
+        "emailComprador": "carlossoto@gmail.com",
+        "telefonoComprador": "+569 99887766"
+    }
+]

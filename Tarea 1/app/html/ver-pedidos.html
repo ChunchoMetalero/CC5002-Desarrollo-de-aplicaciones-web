@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    </head>
     <body>
         <title>Feria Online OMG</title>
         <h1> Ver Pedidos </h1>
@@ -8,8 +10,6 @@
             <a href="index.html"> Inicio </a> 
             <a href="agregar-pedido.html"> agregar-pedido </a>
             <a href="agregar-producto.html"> agregar-producto </a>
-            <a href="informacion-pedido.html"> informacion-pedido </a>
-            <a href="informacion-producto.html"> informacion-producto </a>
             <a href="ver-pedidos.html"> ver-pedidos </a>
             <a href="ver-productos.html"> ver-productos </a>
         </div>
@@ -21,12 +21,14 @@
                         <th>Producto(s)</th>
                         <th>Region</th>
                         <th>Comuna</th>
-                        <th>Nombre Comprador</th>
+                        <th>Nombre del Comprador</th>
                     </tr>
                 </thead>
-                <tbody id="lista-productos">
+                <tbody id="lista-pedidos">
                 </tbody>
             </table>
         </div>
+        <script src="../js/ver-pedidos.js"></script>
+        <script src="../bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
     </body>
 </html>

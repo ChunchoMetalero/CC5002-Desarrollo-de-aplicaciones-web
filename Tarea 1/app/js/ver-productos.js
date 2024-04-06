@@ -11,7 +11,7 @@ fetch("../data/listado-productos.json")
             fila += "<td>" + producto.productos.join(", ") + "</td>";
             fila += "<td>" + producto.region + "</td>";
             fila += "<td>" + producto.comuna + "</td>";
-            fila += "<td><img src='" + producto.imagen + "' alt='Product Image' width='120' height='120'></td>";
+            fila += "<td><img src='" + producto.img120 + "' alt='Product Image'></td>";
             fila += "</tr>";
 
             // Agregar la fila al tbody de la tabla
@@ -24,7 +24,6 @@ fetch("../data/listado-productos.json")
 
 
 function mostrarInformacionProducto(productId) {
-    console.log("Esto funciona");
     console.log("Producto seleccionado: " + productId);
     // Obtener los datos del producto correspondiente al ID
     fetch("../data/listado-productos.json")
