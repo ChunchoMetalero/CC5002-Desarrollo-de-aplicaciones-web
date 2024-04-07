@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Feria Online OMG</title>
+    <title>Agregar Pedido</title>
 </head>
 <body>
     <h1> Agregar Pedido </h1>
@@ -14,7 +14,7 @@
         <a href="ver-productos.html"> ver-productos </a>
     </div>
     <div>
-        <form class="formulario" id="agregar-producto">
+        <form class="formulario" id="agregar-pedido">
             <div id="tipo-producto" class="grupo-input">
                 <label for="tipo-prod">Tipo de producto</label>
                 <select name="tipo-producto" id="tipo-prod">
@@ -25,7 +25,7 @@
             </div>
             <div id="Producto" class="grupo-input">
                 <label for="producto-select"> Producto </label>
-                <select name="Producto" id="producto-select"></select>
+                <select name="Producto" id="producto-select" multiple></select>
             </div>
             <div id="Descripcion" class="grupo-input">
                 <label for="des">Descripcion</label>
@@ -33,11 +33,15 @@
             </div>
             <div id="Regiones" class="grupo-input">
                 <label for="region-select">Regiones</label>
-                <select name="Regiones" id="region-select"></select>
+                <select name="Regiones" id="region-select">
+                    <option value="none">Seleccione una opcion</option>
+                </select>
             </div>
             <div id="Comunas" class="grupo-input">
                 <label for="comuna-select">Comunas</label>
-                <select name="Comunas" id="comuna-select"></select>
+                <select name="Comunas" id="comuna-select">
+                    <option value="none">Seleccione una Región primero</option>
+                </select>
             </div>
             <div id="Nombre-Comprador" class="grupo-input">
                 <label for="nombre-comp">Nombre del Comprador</label>
@@ -55,5 +59,6 @@
         <button id="agregar">Agregar Pedido</button>
     </div>
     <script src="../js/agregar-pedido.js"></script>
+    <script src="../js/validadores.js"></script>
 </body>
 </html>

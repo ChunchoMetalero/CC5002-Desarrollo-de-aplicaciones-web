@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
-    <head></head>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Agregar Producto</title>
+    </head>
     <body>
-        <title>Feria Online OMG</title>
         <h1> Agregar Producto </h1>
         <div>
             <a href="index.html"> Inicio </a> 
@@ -14,43 +16,53 @@
         <div>
             <form class="formulario" id="agregar-producto">
                 <div id="tipo-producto" class="grupo-input">
-                    <label for="tipo-producto">Tipo de producto</label>
+                    <label for="tipo-prod">Tipo de producto</label>
                     <select name="tipo-producto" id="tipo-prod">
+                        <option value="none">Seleccione una opcion</option>
                         <option value="fruta">Fruta</option>
                         <option value="verdura">Verdura</option>
                     </select>
                 </div>
                 <div id="Producto" class="grupo-input">
-                    <label for="Producto"> Producto </label>
-                    <select name="Producto" id="producto-select"></select>
+                    <label for="producto-select"> Producto </label>
+                    <select name="Producto" id="producto-select" multiple></select>
                 </div>
                 <div id="Descripcion" class="grupo-input">
-                    <label for="Descripcion">Descripcion</label>
+                    <label for="des">Descripcion</label>
                     <textarea name="Descripcion" id="des" cols="50" rows="4"></textarea>
                 </div>
+                <div>
+                    <label for="imagen">Imagen</label>
+                    <input type="file" id="imagen" name="Imagen" multiple>
+                </div>
                 <div id="Regiones" class="grupo-input">
-                    <label for="Regiones">Regiones</label>
-                    <select name="Regiones" id="region-select"></select>
+                    <label for="region-select">Regiones</label>
+                    <select name="Regiones" id="region-select">
+                        <option value="none">Seleccione una opcion</option>
+                    </select>
                 </div>
                 <div id="Comunas" class="grupo-input">
-                    <label for="Comunas">Comunas</label>
-                    <select name="Comunas" id="comuna-select"></select>
+                    <label for="comuna-select">Comunas</label>
+                    <select name="Comunas" id="comuna-select">
+                        <option value="none">Seleccione una Región primero</option>
+                    </select>
                 </div>
                 <div id="Nombre-Productor" class="grupo-input">
-                    <label for="Nombre-Productor">Nombre del productor</label>
+                    <label for="nombre-prod">Nombre del productor</label>
                     <input type="text" id="nombre-prod" name="Nombre-Productor" size="80">
                 </div>
                 <div id="email-productor" class="grupo-input">
-                    <label for="email-productor">Email del productor</label>
+                    <label for="email-prod">Email del productor</label>
                     <input type="email" id="email-prod" name="email-productor" size="30">
                 </div>
                 <div id="telefono-productor" class="grupo-input">
-                    <label for="telefono-productor">Telefono del productor</label>
+                    <label for="telefono-prod">Telefono del productor</label>
                     <input type="tel" id="telefono-prod" name="telefono-productor" size="15">
                 </div>
             </form>
             <button id="agregar">Agregar Producto(s)</button>
         </div>
         <script src="../js/agregar-producto.js"></script>
+        <script src="../js/validadores.js"></script>
     </body>
 </html>
