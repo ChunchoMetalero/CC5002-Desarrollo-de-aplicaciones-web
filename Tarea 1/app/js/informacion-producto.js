@@ -15,8 +15,16 @@ var producto = localStorage.getItem("producto");
             // Agrega más líneas para los otros campos del producto (precio, cantidad, categoría, etc.)
 
             // Si tienes la URL de la imagen, puedes establecerla así:
-            document.getElementById("imagenProducto").src = producto.img640;
+
+            parrafoImagen = document.createElement("p");
+            parrafoImagen.innerHTML = `<img id="imagenProducto" src="${producto.img640}" alt="Imagen del Producto" class="imagen">`;
+            document.body.appendChild(parrafoImagen);
+            
+
+            
+           // <p> Imagen: <img id="imagenProducto" src="producto.img640" alt="Imagen del Producto"></p> // parrafo a agregar
         }
+
 
 document.getElementById("imagenProducto").addEventListener('click', function() {
     console.log('Click en la imagen del producto');

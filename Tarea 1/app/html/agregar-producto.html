@@ -2,65 +2,86 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Agregar Producto</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../css/layout.css">
+        <link rel="stylesheet" href="../css/forms.css">
+        <link rel="stylesheet" href="../css/modal.css">
+        <title>Feria Online OMG - Agregar Producto</title>
     </head>
     <body>
-        <h1> Agregar Producto </h1>
-        <div>
-            <a href="index.html"> Inicio </a> 
-            <a href="agregar-pedido.html"> agregar-pedido </a>
-            <a href="agregar-producto.html"> agregar-producto </a>
-            <a href="ver-pedidos.html"> ver-pedidos </a>
-            <a href="ver-productos.html"> ver-productos </a>
+        <div class="navbar">
+            <a class="navbar-page" href="index.html">Inicio</a> 
+            <a class="navbar-page" href="agregar-pedido.html">Agregar Pedido</a>
+            <a class="navbar-page" href="agregar-producto.html">Agregar Producto</a>
+            <a class="navbar-page" href="ver-pedidos.html">Ver Pedidos</a>
+            <a class="navbar-page" href="ver-productos.html">Ver Productos</a>
         </div>
-        <div>
+        <div class="content">
+            <div id="errorAlert" class="alert error hidden"></div>
+            <div id="successAlert" class="alert success hidden"></div>
+            <h1> Agregar Producto(s) </h1>
+            <p> Aquí podrás agregar un producto a la Feria OMG </p>
             <form class="formulario" id="agregar-producto">
                 <div id="tipo-producto" class="grupo-input">
                     <label for="tipo-prod">Tipo de producto</label>
                     <select name="tipo-producto" id="tipo-prod">
-                        <option value="none">Seleccione una opcion</option>
+                        <option value="none">Seleccione una opción</option>
                         <option value="fruta">Fruta</option>
                         <option value="verdura">Verdura</option>
                     </select>
                 </div>
                 <div id="Producto" class="grupo-input">
-                    <label for="producto-select"> Producto </label>
+                    <div>
+                        <label for="producto-select">Producto(s):</label>
+                    </div>
                     <select name="Producto" id="producto-select" multiple></select>
                 </div>
                 <div id="Descripcion" class="grupo-input">
-                    <label for="des">Descripcion</label>
+                    <div>
+                        <label for="des">Descripción:</label>
+                    </div>
                     <textarea name="Descripcion" id="des" cols="50" rows="4"></textarea>
                 </div>
-                <div>
-                    <label for="imagen">Imagen</label>
+                <div id="subirImagen" class="grupo-input">
+                    <label for="imagen">Subir Imagen:</label>
                     <input type="file" id="imagen" name="Imagen" multiple>
                 </div>
                 <div id="Regiones" class="grupo-input">
-                    <label for="region-select">Regiones</label>
+                    <label for="region-select">Regiones:</label>
                     <select name="Regiones" id="region-select">
-                        <option value="none">Seleccione una opcion</option>
+                        <option value="none">Seleccione una opción</option>
                     </select>
                 </div>
                 <div id="Comunas" class="grupo-input">
-                    <label for="comuna-select">Comunas</label>
+                    <label for="comuna-select">Comunas:</label>
                     <select name="Comunas" id="comuna-select">
                         <option value="none">Seleccione una Región primero</option>
                     </select>
                 </div>
                 <div id="Nombre-Productor" class="grupo-input">
-                    <label for="nombre-prod">Nombre del productor</label>
+                    <label for="nombre-prod">Nombre del productor:</label>
                     <input type="text" id="nombre-prod" name="Nombre-Productor" size="80">
                 </div>
                 <div id="email-productor" class="grupo-input">
-                    <label for="email-prod">Email del productor</label>
+                    <label for="email-prod">Email del productor:</label>
                     <input type="email" id="email-prod" name="email-productor" size="30">
                 </div>
                 <div id="telefono-productor" class="grupo-input">
-                    <label for="telefono-prod">Telefono del productor</label>
+                    <label for="telefono-prod">Telefono del productor:</label>
                     <input type="tel" id="telefono-prod" name="telefono-productor" size="15">
                 </div>
             </form>
-            <button id="agregar">Agregar Producto(s)</button>
+            <div id="confirmModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p id="mensajeConfirmacion"></p>
+                    <button class="modalButton" id="confirmYes">Sí, confirmo</button>
+                    <button class="modalButton" id="confirmNo">No, quiero volver al formulario</button>
+                </div>
+            </div>
+            <button class="button" id="agregar">Agregar Producto(s)</button>
         </div>
         <script src="../js/agregar-producto.js"></script>
         <script src="../js/validadores.js"></script>

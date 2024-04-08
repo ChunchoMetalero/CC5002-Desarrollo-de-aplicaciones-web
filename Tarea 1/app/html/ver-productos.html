@@ -1,20 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
-        <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../css/layout.css">
+        <link rel="stylesheet" href="../css/table.css">
+        <title>Feria Online OMG</title>
     </head>
     <body>
-        <title>Feria Online OMG</title>
-        <h1> Ver Productos </h1>
-        <div>
-            <a href="index.html"> Inicio </a> 
-            <a href="agregar-pedido.html"> agregar-pedido </a>
-            <a href="agregar-producto.html"> agregar-producto </a>
-            <a href="ver-pedidos.html"> ver-pedidos </a>
-            <a href="ver-productos.html"> ver-productos </a>
+        <div class="navbar">
+            <a class="navbar-page" href="index.html">Inicio</a> 
+            <a class="navbar-page" href="agregar-pedido.html">Agregar Pedido</a>
+            <a class="navbar-page" href="agregar-producto.html">Agregar Producto</a>
+            <a class="navbar-page" href="ver-pedidos.html">Ver Pedidos</a>
+            <a class="navbar-page" href="ver-productos.html">Ver Productos</a>
         </div>
-        <div>
-            <table id="tabla-productos" class="table table-striped">
+        <div class="content">
+        <h1> Ver Productos </h1>
+        <p> Aquí podrás ver los productos disponibles en la Feria OMG </p>
+            <table id="tabla-productos" class="table">
                 <thead>
                     <tr>
                         <th>Tipo</th>
@@ -29,6 +35,5 @@
             </table>
         </div>
         <script src="../js/ver-productos.js"></script>
-        <script src="../bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
     </body>
 </html>

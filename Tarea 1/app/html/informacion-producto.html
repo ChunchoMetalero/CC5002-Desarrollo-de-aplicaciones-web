@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/info.css">
     <title>Feria Online OMG - Informacion del Producto</title>
 </head>
 <body>
-    <h1> Informacion del Producto </h1>
-    <div>
-        <a href="index.html"> Inicio </a> 
-        <a href="agregar-pedido.html"> agregar-pedido </a>
-        <a href="agregar-producto.html"> agregar-producto </a>
-        <a href="ver-pedidos.html"> ver-pedidos </a>
-        <a href="ver-productos.html"> ver-productos </a>
+    <div class="navbar">
+        <a class="navbar-page" href="index.html">Inicio</a> 
+        <a class="navbar-page" href="agregar-pedido.html">Agregar Pedido</a>
+        <a class="navbar-page" href="agregar-producto.html">Agregar Producto</a>
+        <a class="navbar-page" href="ver-pedidos.html">Ver Pedidos</a>
+        <a class="navbar-page" href="ver-productos.html">Ver Productos</a>
     </div>
-    <div>
-        <h2> Informacion del Producto </h2>
+    <div id="info" class="content">
+        <h1> Informacion del Producto </h1>
         <p> Tipo: <span id="tipoProducto"></span></p>
         <p> Producto(s): <span id="nombreProducto"></span></p>
         <p> Descripcion: <span id="descripcionProducto"></span></p>
@@ -22,7 +27,6 @@
         <p> Productor: <span id="productorProducto"></span></p>
         <p> Email: <span id="emailProducto"></span></p>
         <p> Telefono: <span id="telefonoProducto"></span></p>
-        <p> Imagen: <img id="imagenProducto" src="" alt="Imagen del Producto"></p>
     </div>
     <script src="../js/informacion-producto.js"></script>
 </body>
