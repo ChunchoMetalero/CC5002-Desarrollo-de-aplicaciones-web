@@ -21,20 +21,6 @@
     text-align: center;
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
 .modalButton {
     font-family: "Roboto", sans-serif;
     background-color: rgb(178, 243, 203);
