@@ -1,4 +1,4 @@
-var tbody = document.getElementById("lista-productos");
+let tbody = document.getElementById("lista-productos");
 
 // Realizar una solicitud HTTP GET para obtener el archivo JSON
 fetch("../data/listado-productos.json")
@@ -6,7 +6,7 @@ fetch("../data/listado-productos.json")
     .then(data =>{
         // Recorrer los datos y agregar filas a la tabla
         data.forEach(function(producto) {
-            var fila = "<tr onClick='mostrarInformacionProducto(" + producto.id + ")'>";
+            let fila = "<tr onClick='mostrarInformacionProducto(" + producto.id + ")'>";
             fila += "<td>" + producto.tipo + "</td>";
             fila += "<td>" + producto.productos.join(", ") + "</td>";
             fila += "<td>" + producto.region + "</td>";
@@ -30,7 +30,7 @@ function mostrarInformacionProducto(productId) {
         .then(response => response.json())
         .then(data => {
             // Buscar el producto en el arreglo de productos
-            var producto = data.find(producto => producto.id == productId);
+            let producto = data.find(producto => producto.id == productId);
             // Guardar los datos del producto en el localStorage
             localStorage.setItem("producto", JSON.stringify(producto));
             // Redirigir a la página de información del producto

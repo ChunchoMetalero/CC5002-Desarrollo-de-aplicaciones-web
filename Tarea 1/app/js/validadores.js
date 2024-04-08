@@ -111,27 +111,27 @@ validarAgregarPedido = () => {
 
 // Función para mostrar la alerta de error
 function mostrarAlertaError(error) {
-    var errorAlert = document.getElementById("errorAlert");
+    let errorAlert = document.getElementById("errorAlert");
     errorAlert.innerHTML = error;
     errorAlert.classList.remove("hidden");
 }
 
 // Función para ocultar la alerta de error
 function ocultarAlertaError() {
-    var errorAlert = document.getElementById("errorAlert");
+    let errorAlert = document.getElementById("errorAlert");
     errorAlert.classList.add("hidden");
 }
 
 // Función para mostrar la alerta de éxito
 function mostrarAlertaExito(error) {
-    var successAlert = document.getElementById("successAlert");
+    let successAlert = document.getElementById("successAlert");
     successAlert.innerHTML = error;
     successAlert.classList.remove("hidden");
 }
 
 // Función para ocultar la alerta de éxito
 function ocultarAlertaExito() {
-    var successAlert = document.getElementById("successAlert");
+    let successAlert = document.getElementById("successAlert");
     successAlert.classList.add("hidden");
 }
 
@@ -167,8 +167,8 @@ document.getElementById('agregar').addEventListener('click', function() {
 
 // Función para mostrar el modal de confirmación
 function showConfirmModal(mensaje, alertaExito) {
-    var modal = document.getElementById("confirmModal");
-    var mensajeConfirmacion = document.getElementById("mensajeConfirmacion");
+    let modal = document.getElementById("confirmModal");
+    let mensajeConfirmacion = document.getElementById("mensajeConfirmacion");
     mensajeConfirmacion.innerHTML = mensaje;
     modal.style.display = "block";
     document.getElementById("confirmYes").addEventListener("click", function() {
@@ -184,6 +184,6 @@ function showConfirmModal(mensaje, alertaExito) {
 
 // Función para ocultar el modal de confirmación
 function hideConfirmModal() {
-    var modal = document.getElementById("confirmModal");
+    let modal = document.getElementById("confirmModal");
     modal.style.display = "none";
 }

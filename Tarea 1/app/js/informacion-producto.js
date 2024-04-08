@@ -1,4 +1,4 @@
-var producto = localStorage.getItem("producto");
+let producto = localStorage.getItem("producto");
         if (producto) {
             // Convertir el JSON a objeto JavaScript
             producto = JSON.parse(producto);
