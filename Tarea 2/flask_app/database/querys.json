@@ -1,0 +1,9 @@
+{
+    "insertar_producto": "INSERT INTO producto (tipo, descripcion, comuna_id, nombre_productor, email_productor, celular_productor) VALUES (%s,%s,%s,%s,%s,%s);",
+    "obtener_lista_frutas": "SELECT id, nombre FROM tipo_verdura_fruta WHERE id<38;",
+    "obtener_lista_verduras": "SELECT id, nombre FROM tipo_verdura_fruta WHERE id>37;",
+    "obtener_lista_regiones": "SELECT id, nombre FROM region;",
+    "obtener_comunas_region": "SELECT id, nombre FROM comuna WHERE region_id=%s;",
+    "obtener_ultimo_id_producto": "SELECT LAST_INSERT_ID();",
+    "insertar_producto_verdura_fruta": "INSERT INTO producto_verdura_fruta (producto_id, tipo_verdura_fruta_id) VALUES (%s,%s);"
+}
