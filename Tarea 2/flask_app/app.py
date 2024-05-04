@@ -59,6 +59,12 @@ def agregar_producto():
     elif request.method == "GET":
         return render_template("app/agregar-producto.html")
     
+@app.route("/ver-productos", methods=["GET"])
+def ver_productos():
+    return render_template("app/ver-productos.html")
+    
+# Gets Form Agregar Producto
+    
 @app.route("/frutas", methods=["GET"])
 def frutas():
     data = []
