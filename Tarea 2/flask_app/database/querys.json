@@ -5,5 +5,6 @@
     "obtener_lista_regiones": "SELECT id, nombre FROM region;",
     "obtener_comunas_region": "SELECT id, nombre FROM comuna WHERE region_id=%s;",
     "obtener_ultimo_id_producto": "SELECT LAST_INSERT_ID();",
-    "insertar_producto_verdura_fruta": "INSERT INTO producto_verdura_fruta (producto_id, tipo_verdura_fruta_id) VALUES (%s,%s);"
+    "insertar_producto_verdura_fruta": "INSERT INTO producto_verdura_fruta (producto_id, tipo_verdura_fruta_id) VALUES (%s,%s);",
+    "insertar_fotos_producto": "INSERT INTO foto (ruta_archivo, nombre_archivo, producto_id) VALUES (%s,%s,%s);"
 }

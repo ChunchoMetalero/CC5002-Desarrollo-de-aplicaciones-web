@@ -178,6 +178,7 @@ function showConfirmModal(mensaje, alertaExito) {
     });
     
     document.getElementById("confirmNo").addEventListener("click", function() {
+        event.preventDefault();
         hideConfirmModal();
     });
 }

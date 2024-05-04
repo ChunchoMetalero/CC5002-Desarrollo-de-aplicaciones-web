@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for, jsonify
 from utils.validations import *
 from database import db
 from werkzeug.utils import secure_filename
+from datetime import datetime
 import hashlib
 import filetype
 import os
@@ -29,6 +30,7 @@ def agregar_producto():
         tipo = request.form.get("tipo-producto")
         productos = request.form.getlist("Producto")
         descripcion = request.form.get("Descripcion")
+        archivos = request.files.getlist("Imagen")
         comuna = request.form.get("Comunas")
         nombre_productor = request.form.get("Nombre-Productor")
         email_productor = request.form.get("email-productor")
@@ -38,7 +40,20 @@ def agregar_producto():
 
         for producto in productos:
             db.insertar_producto_verdura_fruta(last_id, producto)
-    
+
+        current_datetime = datetime.now().strftime("%d%m%Y%H%M%S") 
+
+        for archivo in archivos:
+            _filename = hashlib.sha256(
+                secure_filename(archivo.filename + current_datetime) # nombre del archivo
+                .encode("utf-8") # encodear a bytes
+                ).hexdigest()
+            _extension = filetype.guess(archivo).extension
+            img_filename = f"{_filename}.{_extension}"
+
+            archivo.save(os.path.join(app.config["UPLOAD_FOLDER"], img_filename))
+            db.insertar_fotos_producto(app.config["UPLOAD_FOLDER"], img_filename, last_id)
+
         return index()
     
     elif request.method == "GET":

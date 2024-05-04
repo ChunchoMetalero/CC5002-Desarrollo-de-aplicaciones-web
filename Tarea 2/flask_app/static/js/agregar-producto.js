@@ -58,5 +58,5 @@ fetch('/regiones')
                 console.error('Error al obtener las comunas:', error);
             });
     });
-        
+
 

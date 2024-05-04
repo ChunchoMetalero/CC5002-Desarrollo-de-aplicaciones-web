@@ -108,6 +108,19 @@ def insertar_producto_verdura_fruta(producto_id, tipo_verdura_fruta_id):
         cursor.close()
         conn.close()
 
+def insertar_fotos_producto(ruta_archivo, nombre_archivo, producto_id):
+    try :
+        conn = get_conn()
+        cursor = conn.cursor()
+        cursor.execute(QUERY_DICT['insertar_fotos_producto'], (ruta_archivo, nombre_archivo, producto_id))
+        conn.commit()
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+    
+
 
 
 
