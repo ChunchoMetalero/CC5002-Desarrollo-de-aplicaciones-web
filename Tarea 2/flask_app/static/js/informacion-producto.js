@@ -1,4 +1,4 @@
-fetch(`/get-productos?page=${page}`)
+fetch(`/producto?id=${p_id}`)
 
     
 

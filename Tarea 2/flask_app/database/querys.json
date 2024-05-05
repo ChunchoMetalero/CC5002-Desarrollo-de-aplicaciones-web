@@ -6,5 +6,11 @@
     "obtener_comunas_region": "SELECT id, nombre FROM comuna WHERE region_id=%s;",
     "obtener_ultimo_id_producto": "SELECT LAST_INSERT_ID();",
     "insertar_producto_verdura_fruta": "INSERT INTO producto_verdura_fruta (producto_id, tipo_verdura_fruta_id) VALUES (%s,%s);",
-    "insertar_fotos_producto": "INSERT INTO foto (ruta_archivo, nombre_archivo, producto_id) VALUES (%s,%s,%s);"
+    "insertar_fotos_producto": "INSERT INTO foto (ruta_archivo, nombre_archivo, producto_id) VALUES (%s,%s,%s);",
+    "obtener_ultimos_productos_info": "select p.id, p.tipo, c.nombre as comuna, r.nombre as region from producto as p join comuna as c on p.comuna_id = c.id join region as r on r.id = c.region_id ORDER BY id DESC LIMIT %s, 5",
+    "obtener_ultimas_fotos": "SELECT f.producto_id, f.ruta_archivo, f.nombre_archivo FROM foto AS f WHERE f.producto_id BETWEEN %s AND %s ORDER BY f.producto_id DESC;",
+    "obtener_ultimos_productos": "select pvf.producto_id as p_id, tvf.nombre from producto_verdura_fruta as pvf join tipo_verdura_fruta as tvf on tvf.id = pvf.tipo_verdura_fruta_id WHERE pvf.producto_id BETWEEN %s AND %s ORDER BY pvf.producto_id DESC;"
+
 }
+
+

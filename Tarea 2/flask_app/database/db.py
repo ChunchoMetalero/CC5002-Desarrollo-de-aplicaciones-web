@@ -119,7 +119,52 @@ def insertar_fotos_producto(ruta_archivo, nombre_archivo, producto_id):
     finally:
         cursor.close()
         conn.close()
-    
+
+def obtener_ultimos_productos_info(page):
+    try :
+        conn = get_conn()
+        cursor = conn.cursor()
+        cursor.execute(QUERY_DICT['obtener_ultimos_productos_info'], ((page-1)*5))
+        productos = cursor.fetchall()
+        return productos
+    except Exception as e:
+        print(e)
+        return None
+    finally:
+        cursor.close()
+        conn.close()
+
+def obtener_ulltimas_fotos(page):
+    i = page*5
+    j = i - 4
+    try :
+        conn = get_conn()
+        cursor = conn.cursor()
+        cursor.execute(QUERY_DICT['obtener_ultimas_fotos'], (j,i,))
+        productos = cursor.fetchall()
+        return productos
+    except Exception as e:
+        print(e)
+        return None
+    finally:
+        cursor.close()
+        conn.close()
+
+def obtener_ultimos_productos(page):
+    i = page*5
+    j = i - 4
+    try :
+        conn = get_conn()
+        cursor = conn.cursor()
+        cursor.execute(QUERY_DICT['obtener_ultimos_productos'], (j,i,))
+        productos = cursor.fetchall()
+        return productos
+    except Exception as e:
+        print(e)
+        return None
+    finally:
+        cursor.close()
+        conn.close()
 
 
 

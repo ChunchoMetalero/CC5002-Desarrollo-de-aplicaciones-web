@@ -114,6 +114,54 @@ def comunas():
         data.append(comuna_dict)
     return jsonify(data)
 
+# Gets Ver-Productos
+
+@app.route("/get-productos", methods=["GET"])
+def get_productos():
+    page = request.args.get("page")
+    data = []
+
+    info_prods = db.obtener_ultimos_productos_info(int(page))
+    prods = db.obtener_ultimos_productos(int(page))
+    fotos = db.obtener_ulltimas_fotos(int(page))
+
+    productos_dict = {}
+
+    # Agrupar la información de cada producto por su id_prod
+    for info_prod in info_prods:
+        id_prod = info_prod[0]
+        productos_dict[id_prod] = {
+            "tipo": info_prod[1],
+            "comuna": info_prod[2],
+            "region": info_prod[3],
+            "frutas_verduras": [],
+            "fotos": []
+        }
+
+    # Agregar la información de frutas o verduras para cada producto
+    for prod in prods:
+        id_prod = prod[0]
+        productos_dict[id_prod]["frutas_verduras"].append(prod[1])
+
+    # Agregar la información de las fotos para cada producto
+    for foto in fotos:
+        id_prod = foto[0]
+        productos_dict[id_prod]["fotos"].append({"ruta": foto[1], "nombre_foto": foto[2]})
+
+    # Convertir el diccionario en una lista para la respuesta JSON
+    for id_prod, info in productos_dict.items():
+        producto = {
+            "id_prod": id_prod,
+            "tipo": info["tipo"],
+            "comuna": info["comuna"],
+            "region": info["region"],
+            "frutas_verduras": info["frutas_verduras"],
+            "fotos": info["fotos"]
+        }
+        data.append(producto)
+
+    return jsonify(data)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
