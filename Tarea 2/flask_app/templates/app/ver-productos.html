@@ -10,8 +10,15 @@
 
 {% block content %}
     <div class="content">
-    <h1> Ver Productos </h1>
-    <p> Aquí podrás ver los productos disponibles en la Feria OMG </p>
+        <h1> Ver Productos </h1>
+        <div class="desc-top-selector">
+            <p> Aquí podrás ver los productos disponibles en la Feria OMG </p>
+            <div id="selector-pagina-top" class="top-page-selector">
+                <button id="pagina-anterior-top">Anterior</button>
+                <span id="numero-pagina-top">1</span>
+                <button id="pagina-siguiente-top">Siguiente</button>
+            </div>
+        </div>    
         <table id="tabla-productos" class="table">
             <thead>
                 <tr>
@@ -25,12 +32,13 @@
             <tbody id="lista-productos">
             </tbody>
         </table>
+        <div id="selector-pagina-bottom" class="bottom-page-selector">
+            <button id="pagina-anterior-bottom">Anterior</button>
+            <span id="numero-pagina-bottom">1</span>
+            <button id="pagina-siguiente-bottom">Siguiente</button>
+        </div>
     </div>
-    <div id="selector-pagina">
-        <button id="pagina-anterior">Anterior</button>
-        <span id="numero-pagina">1</span>
-        <button id="pagina-siguiente">Siguiente</button>
-    </div>
+    
 {% endblock %}
 
 

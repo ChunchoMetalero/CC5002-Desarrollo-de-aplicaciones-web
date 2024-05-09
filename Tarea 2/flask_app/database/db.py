@@ -1,5 +1,6 @@
 import pymysql
 import json
+from utils import pages
 
 DB_NAME = "tarea2"
 DB_USERNAME = "cc5002"
@@ -120,6 +121,20 @@ def insertar_fotos_producto(ruta_archivo, nombre_archivo, producto_id):
         cursor.close()
         conn.close()
 
+def obtener_cantidad_productos():
+    try :
+        conn = get_conn()
+        cursor = conn.cursor()
+        cursor.execute(QUERY_DICT['obtener_cantidad_productos'])
+        cantidad = cursor.fetchone()[0]
+        return cantidad
+    except Exception as e:
+        print(e)
+        return None
+    finally:
+        cursor.close()
+        conn.close()
+
 def obtener_ultimos_productos_info(page):
     try :
         conn = get_conn()
@@ -135,12 +150,12 @@ def obtener_ultimos_productos_info(page):
         conn.close()
 
 def obtener_ulltimas_fotos(page):
-    i = page*5
-    j = i - 4
+    cantidad = obtener_cantidad_productos()
+    y = pages.products_in_page(page, cantidad)
     try :
         conn = get_conn()
         cursor = conn.cursor()
-        cursor.execute(QUERY_DICT['obtener_ultimas_fotos'], (j,i,))
+        cursor.execute(QUERY_DICT['obtener_ultimas_fotos'], (y[1],y[0],))
         productos = cursor.fetchall()
         return productos
     except Exception as e:
@@ -151,14 +166,56 @@ def obtener_ulltimas_fotos(page):
         conn.close()
 
 def obtener_ultimos_productos(page):
-    i = page*5
-    j = i - 4
+    cantidad = obtener_cantidad_productos()
+    y = pages.products_in_page(page, cantidad)
     try :
         conn = get_conn()
         cursor = conn.cursor()
-        cursor.execute(QUERY_DICT['obtener_ultimos_productos'], (j,i,))
+        cursor.execute(QUERY_DICT['obtener_ultimos_productos'], (y[1],y[0],))
         productos = cursor.fetchall()
         return productos
+    except Exception as e:
+        print(e)
+        return None
+    finally:
+        cursor.close()
+        conn.close()
+
+def obtener_info_prod(producto_id):
+    try :
+        conn = get_conn()
+        cursor = conn.cursor()
+        cursor.execute(QUERY_DICT['obtener_info_prod'], (producto_id,))
+        info_prod = cursor.fetchone()
+        return info_prod
+    except Exception as e:
+        print(e)
+        return None
+    finally:
+        cursor.close()
+        conn.close()
+
+def obtener_fotos_prod(producto_id):
+    try :
+        conn = get_conn()
+        cursor = conn.cursor()
+        cursor.execute(QUERY_DICT['obtener_fotos_prod'], (producto_id,))
+        fotos = cursor.fetchall()
+        return fotos
+    except Exception as e:
+        print(e)
+        return None
+    finally:
+        cursor.close()
+        conn.close()
+
+def obtener_tvf_prod(producto_id):
+    try :
+        conn = get_conn()
+        cursor = conn.cursor()
+        cursor.execute(QUERY_DICT['obtener_tvf_prod'], (producto_id,))
+        tvf = cursor.fetchall()
+        return tvf
     except Exception as e:
         print(e)
         return None

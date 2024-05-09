@@ -162,6 +162,44 @@ def get_productos():
 
     return jsonify(data)
 
+@app.route("/producto", methods=["GET"])
+def producto():
+    id_prod = request.args.get("id_prod")
+    data = []
+
+    info_prod = db.obtener_info_prod(int(id_prod))
+    prods = db.obtener_tvf_prod(int(id_prod))
+    fotos = db.obtener_fotos_prod(int(id_prod))
+
+    productos_dict = {}
+
+    productos_dict[id_prod] = {
+        "tipo": info_prod[1],
+        "comuna": info_prod[2],
+        "region": info_prod[3],
+        "productor": info_prod[4],
+        "email": info_prod[5],
+        "telefono": info_prod[6],
+        "descripcion": info_prod[7],
+        "frutas_verduras": [],
+        "fotos": []
+    }
+    for prod in prods:
+        productos_dict[id_prod]["frutas_verduras"].append(prod[1])
+
+    for foto in fotos:
+        productos_dict[id_prod]["fotos"].append({"ruta": foto[0], "nombre_foto": foto[1]})
+
+    data.append(productos_dict[id_prod])
+    return jsonify(data)
+
+@app.route("/informacion-producto", methods=["GET"])
+def informacion_producto():
+    return render_template("app/informacion-producto.html")
+
+
+    
+
 
 if __name__ == "__main__":
     app.run(debug=True)
