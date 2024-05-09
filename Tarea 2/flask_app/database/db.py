@@ -223,7 +223,34 @@ def obtener_tvf_prod(producto_id):
         cursor.close()
         conn.close()
 
+### Validations
+def verificar_tipo_verdura_fruta(producto_id):
+    try :
+        conn = get_conn()
+        cursor = conn.cursor()
+        cursor.execute(QUERY_DICT['verificar_tipo_verdura_fruta'], (producto_id,))
+        tipo = cursor.fetchone()
+        return tipo
+    except Exception as e:
+        print(e)
+        return None
+    finally:
+        cursor.close()
+        conn.close()
 
+def verificar_comuna_region(region_id, comuna_id):
+    try :
+        conn = get_conn()
+        cursor = conn.cursor()
+        cursor.execute(QUERY_DICT['verificar_comuna_region'], (region_id, comuna_id))
+        comuna = cursor.fetchone()
+        return comuna
+    except Exception as e:
+        print(e)
+        return None
+    finally:
+        cursor.close()
+        conn.close()
 
 
 

@@ -31,30 +31,35 @@ def agregar_producto():
         productos = request.form.getlist("Producto")
         descripcion = request.form.get("Descripcion")
         archivos = request.files.getlist("Imagen")
+        region = request.form.get("Regiones")
         comuna = request.form.get("Comunas")
         nombre_productor = request.form.get("Nombre-Productor")
         email_productor = request.form.get("email-productor")
         telefono_productor = request.form.get("telefono-productor")
 
-        last_id = db.insertar_producto(tipo, descripcion, comuna, nombre_productor, email_productor, telefono_productor)
+        if validate_form(nombre_productor, email_productor, telefono_productor, region, comuna, productos, tipo):
 
-        for producto in productos:
-            db.insertar_producto_verdura_fruta(last_id, producto)
+            last_id = db.insertar_producto(tipo, descripcion, comuna, nombre_productor, email_productor, telefono_productor)
 
-        current_datetime = datetime.now().strftime("%d%m%Y%H%M%S") 
+            for producto in productos:
+                db.insertar_producto_verdura_fruta(last_id, producto)
 
-        for archivo in archivos:
-            _filename = hashlib.sha256(
-                secure_filename(archivo.filename + current_datetime) # nombre del archivo
-                .encode("utf-8") # encodear a bytes
-                ).hexdigest()
-            _extension = filetype.guess(archivo).extension
-            img_filename = f"{_filename}.{_extension}"
+            current_datetime = datetime.now().strftime("%d%m%Y%H%M%S") 
 
-            archivo.save(os.path.join(app.config["UPLOAD_FOLDER"], img_filename))
-            db.insertar_fotos_producto(app.config["UPLOAD_FOLDER"], img_filename, last_id)
+            for archivo in archivos:
+                _filename = hashlib.sha256(
+                    secure_filename(archivo.filename + current_datetime) # nombre del archivo
+                    .encode("utf-8") # encodear a bytes
+                    ).hexdigest()
+                _extension = filetype.guess(archivo).extension
+                img_filename = f"{_filename}.{_extension}"
 
-        return index()
+                archivo.save(os.path.join(app.config["UPLOAD_FOLDER"], img_filename))
+                db.insertar_fotos_producto(app.config["UPLOAD_FOLDER"], img_filename, last_id)
+
+            return index()
+        else:
+            return render_template("app/agregar-producto.html")
     
     elif request.method == "GET":
         return render_template("app/agregar-producto.html")
