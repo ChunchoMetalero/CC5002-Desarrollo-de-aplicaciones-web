@@ -13,21 +13,29 @@ def validate_type_product(product_type):
 def validate_product(product, product_type):
     if product_type == "fruta":
         for id in product:
-            if int(id).isdigit() and int(id) <= 37:
-                if not db.verificar_tipo_verdura_fruta(id) or id >= 38:
+            try:
+                valor = int(id)
+                if int(id) and int(id) <= 37:
+                    if not db.verificar_tipo_verdura_fruta(id) or int(id) >= 38:
+                        return False
+                else:
                     return False
-            else:
+            except:
                 return False
     elif product_type == "verdura":
         for id in product:
-            if int(id).isdigit() and 38 <= int(id) <= 64:
-                if not db.verificar_tipo_verdura_fruta(id) or id <= 37:
+            try:
+                valor = int(id)
+                if int(id) and 38 <= int(id) <= 64:
+                    if not db.verificar_tipo_verdura_fruta(id) or int(id) <= 37:
+                        return False
+                else:
                     return False
-            else:
+            except:
                 return False
     return True
 
-def validate_quantity_prods(products):
+def validate_len_prods(products):
     if len(products) > 5:
         return False
     elif len(products) <= 0:
@@ -40,7 +48,7 @@ def validate_products(products, product_type):
         return False
     if not validate_product(products, product_type):
         return False
-    if not validate_quantity_prods(products):
+    if not validate_len_prods(products):
         return False
     return True
 
@@ -49,10 +57,12 @@ def cleantext(text):
 
 def validate_region_comuna(region_id, comuna_id):
     if region_id.isdigit() and comuna_id.isdigit():
-        if not db.verificar_comuna_region(region_id, comuna_id):
+        if not db.verificar_comuna_region(comuna_id, region_id):
             return False
+        else:
+            return True
     else:
-        return True
+        return False
     
 def validate_nombre_productor(nombre_productor):
     nombre = cleantext(nombre_productor)
@@ -75,20 +85,8 @@ def validate_email(email):
         return None
     
 def validate_celular(celular):
-    # Eliminar espacios en blanco al principio y al final
-    celular = celular.strip()
-    
-    # Eliminar caracteres no deseados y verificar formato
-    celular_limpio = re.sub(r'[^\d]', '', celular)
-    formato_valido = re.match(r'^\d{9}$', celular_limpio)
-    
-    if formato_valido:
-        if 9 <= len(celular_limpio) <=  15:
-            return celular_limpio
-        else:
-            return None
-    else:
-        return None
+    if celular.isdigit() and 9 <= len(celular) <= 15:
+        return celular
     
 def validate_form(nombre_productor, email, celular, region_id, comuna_id, products, product_type):
     if not validate_nombre_productor(nombre_productor):
@@ -107,6 +105,8 @@ def validate_form(nombre_productor, email, celular, region_id, comuna_id, produc
         print("Products")
         return False
     return True
+
+
 
 
 

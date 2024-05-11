@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect, url_for, jsonify
 from utils.validations import *
+from utils.pages import *
 from database import db
 from werkzeug.utils import secure_filename
 from datetime import datetime
@@ -20,6 +21,14 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000 # 16 MB
 def request_entity_too_large(error):
     return 'File exceeds the maximum file size allowed', 413
 
+@app.errorhandler(404)
+def page_not_found(error):
+    return error404()
+
+@app.route("/error404", methods=["GET"])
+def error404():
+    return render_template("app/error404.html")
+
 @app.route("/", methods=["GET"])
 def index():
     return render_template("app/index.html")
@@ -30,16 +39,18 @@ def agregar_producto():
         tipo = request.form.get("tipo-producto")
         productos = request.form.getlist("Producto")
         descripcion = request.form.get("Descripcion")
+        c_desc = cleantext(descripcion)
         archivos = request.files.getlist("Imagen")
         region = request.form.get("Regiones")
         comuna = request.form.get("Comunas")
         nombre_productor = request.form.get("Nombre-Productor")
+        nombre = cleantext(nombre_productor)
         email_productor = request.form.get("email-productor")
         telefono_productor = request.form.get("telefono-productor")
 
-        if validate_form(nombre_productor, email_productor, telefono_productor, region, comuna, productos, tipo):
+        if validate_form(nombre, email_productor, telefono_productor, region, comuna, productos, tipo):
 
-            last_id = db.insertar_producto(tipo, descripcion, comuna, nombre_productor, email_productor, telefono_productor)
+            last_id = db.insertar_producto(tipo, c_desc, comuna, nombre, email_productor, telefono_productor)
 
             for producto in productos:
                 db.insertar_producto_verdura_fruta(last_id, producto)
@@ -110,99 +121,127 @@ def regiones():
 def comunas():
     data = []
     region_id = request.args.get("region_id")
-    comunas = db.obtener_lista_comunas(region_id)
-    for comuna in comunas:
-        comuna_dict = {
-            "id": comuna[0],
-            "nombre": comuna[1]
-        }
-        data.append(comuna_dict)
-    return jsonify(data)
+    if region_id.isdigit() and 1 <= int(region_id) <= 16 :
+        region = int(region_id)
+        comunas = db.obtener_lista_comunas(region)
+        for comuna in comunas:
+            comuna_dict = {
+                "id": comuna[0],
+                "nombre": comuna[1]
+            }
+            data.append(comuna_dict)
+        return jsonify(data)
+    else:
+        error404()
 
 # Gets Ver-Productos
 
 @app.route("/get-productos", methods=["GET"])
 def get_productos():
     page = request.args.get("page")
-    data = []
+    cantidad = db.obtener_cantidad_productos()
+    if page.isdigit() and 1 <= int(page) <= pages(int(cantidad)):
+        pagina= int(page)
+        data = []
 
-    info_prods = db.obtener_ultimos_productos_info(int(page))
-    prods = db.obtener_ultimos_productos(int(page))
-    fotos = db.obtener_ulltimas_fotos(int(page))
+        info_prods = db.obtener_ultimos_productos_info(int(pagina))
+        prods = db.obtener_ultimos_productos(int(pagina))
+        fotos = db.obtener_ulltimas_fotos(int(pagina))
 
-    productos_dict = {}
+        productos_dict = {}
 
-    # Agrupar la información de cada producto por su id_prod
-    for info_prod in info_prods:
-        id_prod = info_prod[0]
-        productos_dict[id_prod] = {
-            "tipo": info_prod[1],
-            "comuna": info_prod[2],
-            "region": info_prod[3],
-            "frutas_verduras": [],
-            "fotos": []
-        }
+        # Agrupar la información de cada producto por su id_prod
+        for info_prod in info_prods:
+            id_prod = info_prod[0]
+            productos_dict[id_prod] = {
+                "tipo": info_prod[1],
+                "comuna": info_prod[2],
+                "region": info_prod[3],
+                "frutas_verduras": [],
+                "fotos": [],
+            }
 
-    # Agregar la información de frutas o verduras para cada producto
-    for prod in prods:
-        id_prod = prod[0]
-        productos_dict[id_prod]["frutas_verduras"].append(prod[1])
+        # Agregar la información de frutas o verduras para cada producto
+        for prod in prods:
+            id_prod = prod[0]
+            productos_dict[id_prod]["frutas_verduras"].append(prod[1])
 
-    # Agregar la información de las fotos para cada producto
-    for foto in fotos:
-        id_prod = foto[0]
-        productos_dict[id_prod]["fotos"].append({"ruta": foto[1], "nombre_foto": foto[2]})
+        # Agregar la información de las fotos para cada producto
+        for foto in fotos:
+            id_prod = foto[0]
+            productos_dict[id_prod]["fotos"].append({"ruta": foto[1], "nombre_foto": foto[2]})
 
-    # Convertir el diccionario en una lista para la respuesta JSON
-    for id_prod, info in productos_dict.items():
-        producto = {
-            "id_prod": id_prod,
-            "tipo": info["tipo"],
-            "comuna": info["comuna"],
-            "region": info["region"],
-            "frutas_verduras": info["frutas_verduras"],
-            "fotos": info["fotos"]
-        }
-        data.append(producto)
+        # Convertir el diccionario en una lista para la respuesta JSON
+        for id_prod, info in productos_dict.items():
+            producto = {
+                "id_prod": id_prod,
+                "tipo": info["tipo"],
+                "comuna": info["comuna"],
+                "region": info["region"],
+                "frutas_verduras": info["frutas_verduras"],
+                "fotos": info["fotos"],
+                "cantidad": cantidad
+            }
+            data.append(producto)
 
-    return jsonify(data)
+        return jsonify(data)
+    
+    else:
+        return error404()
+
 
 @app.route("/producto", methods=["GET"])
 def producto():
     id_prod = request.args.get("id_prod")
-    data = []
+    cantidad = db.obtener_cantidad_productos()
+    if id_prod.isdigit() and 1 <= int(id_prod) <= cantidad:
+        id_producto = int(id_prod)
+        data = []
 
-    info_prod = db.obtener_info_prod(int(id_prod))
-    prods = db.obtener_tvf_prod(int(id_prod))
-    fotos = db.obtener_fotos_prod(int(id_prod))
+        info_prod = db.obtener_info_prod(int(id_producto))
+        prods = db.obtener_tvf_prod(int(id_producto))
+        fotos = db.obtener_fotos_prod(int(id_producto))
 
-    productos_dict = {}
+        productos_dict = {}
 
-    productos_dict[id_prod] = {
-        "tipo": info_prod[1],
-        "comuna": info_prod[2],
-        "region": info_prod[3],
-        "productor": info_prod[4],
-        "email": info_prod[5],
-        "telefono": info_prod[6],
-        "descripcion": info_prod[7],
-        "frutas_verduras": [],
-        "fotos": []
-    }
-    for prod in prods:
-        productos_dict[id_prod]["frutas_verduras"].append(prod[1])
+        productos_dict[id_producto] = {
+            "tipo": info_prod[1],
+            "comuna": info_prod[2],
+            "region": info_prod[3],
+            "productor": info_prod[4],
+            "email": info_prod[5],
+            "telefono": info_prod[6],
+            "descripcion": info_prod[7],
+            "frutas_verduras": [],
+            "fotos": []
+        }
+        for prod in prods:
+            productos_dict[id_producto]["frutas_verduras"].append(prod[1])
 
-    for foto in fotos:
-        productos_dict[id_prod]["fotos"].append({"ruta": foto[0], "nombre_foto": foto[1]})
+        for foto in fotos:
+            productos_dict[id_producto]["fotos"].append({"ruta": foto[0], "nombre_foto": foto[1]})
 
-    data.append(productos_dict[id_prod])
-    return jsonify(data)
+        data.append(productos_dict[id_producto])
+        return jsonify(data)
+    else:
+        return error404()
+
 
 @app.route("/informacion-producto", methods=["GET"])
 def informacion_producto():
     return render_template("app/informacion-producto.html")
 
+@app.route("/agregar-pedido", methods=["GET", "POST"])
+def agregar_pedido():
+    return render_template("app/agregar-pedido.html")
 
+@app.route("/ver-pedidos", methods=["GET"])
+def ver_pedidos():
+    return render_template("app/ver-pedidos.html")
+
+@app.route("/informacion-pedido", methods=["GET"])
+def informacion_pedido():
+    return render_template("app/informacion-pedido.html")
     
 
 

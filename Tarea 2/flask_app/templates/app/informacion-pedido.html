@@ -1,32 +1,29 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../css/layout.css">
-        <title>Feria Online OMG - Informacion del Producto</title>
-    </head>
-    <body>
-        <div class="navbar">
-            <a class="navbar-page" href="index.html">Inicio</a> 
-            <a class="navbar-page" href="agregar-pedido.html">Agregar Pedido</a>
-            <a class="navbar-page" href="agregar-producto.html">Agregar Producto</a>
-            <a class="navbar-page" href="ver-pedidos.html">Ver Pedidos</a>
-            <a class="navbar-page" href="ver-productos.html">Ver Productos</a>
-        </div>
-        <div class="content">
-            <h1> Informacion del Pedido </h1>
-            <p> Tipo: <span id="tipoPedido"></span></p>
-            <p> Producto(s): <span id="productosPedido"></span></p>
-            <p> Descripcion: <span id="descripcionPedido"></span></p>
-            <p> Region: <span id="regionPedido"></span></p>
-            <p> Comuna: <span id="comunaPedido"></span></p>
-            <p> Comprador: <span id="compradorPedido"></span></p>
-            <p> Email del Comprador: <span id="emailPedido"></span></p>
-            <p> Telefono del Comprador: <span id="telefonoPedido"></span></p>
-        </div>
-        <script src="../js/informacion-pedido.js"></script>
-    </body>
-</html>
+{% extends 'app/base.html' %}
+
+{% block css %} 
+    <link rel="stylesheet" href="../static/css/info.css">
+{% endblock %}
+
+{% block title %}
+    <title>Feria Online OMG - Informacion del Pedido</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="content">
+        <h1> Informacion del Pedido </h1>
+        <p> Tipo: <span id="tipoPedido"></span></p>
+        <p> Producto(s): <span id="productosPedido"></span></p>
+        <p> Descripcion: <span id="descripcionPedido"></span></p>
+        <p> Region: <span id="regionPedido"></span></p>
+        <p> Comuna: <span id="comunaPedido"></span></p>
+        <p> Comprador: <span id="compradorPedido"></span></p>
+        <p> Email del Comprador: <span id="emailPedido"></span></p>
+        <p> Telefono del Comprador: <span id="telefonoPedido"></span></p>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="../static/js/informacion-pedido.js"></script>
+{% endblock %}

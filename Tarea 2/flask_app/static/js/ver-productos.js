@@ -1,7 +1,15 @@
 let tbody = document.getElementById("lista-productos");
 let actualPage = 1;
-
+let cantidadProductos = 0;
 // Realizar una solicitud HTTP GET para obtener el archivo JSON
+
+function numberPages(cantidadProductos){
+    if (cantidadProductos % 5 === 0){
+        return cantidadProductos / 5;
+    } else {
+        return Math.floor(cantidadProductos / 5) + 1;
+    }   
+}
 
 function getProductos(page) {
     fetch("/get-productos?page=" + actualPage)
@@ -17,6 +25,7 @@ function getProductos(page) {
                 let primeraFoto = producto.fotos[0];
                 fila += "<td><img src='" + primeraFoto.ruta + "/" + primeraFoto.nombre_foto + "' alt='Product Image' height='120px' width='120px'></td>";
                 fila += "</tr>";
+                cantidadProductos = producto.cantidad;
 
                 // Agregar la fila al tbody de la tabla
                 tbody.innerHTML += fila;
@@ -46,12 +55,18 @@ function mostrarInformacionProducto(productId) {
 }
 
 function nextPage() {
-    actualPage++;
-    let top_number = document.getElementById("numero-pagina-top");
-    let bottom_number = document.getElementById("numero-pagina-bottom");
-    top_number.innerText = actualPage;
-    bottom_number.innerText = actualPage;
-    getProductos(actualPage);
+    if (actualPage < numberPages(cantidadProductos)) { 
+        actualPage++;
+        let top_number = document.getElementById("numero-pagina-top");
+        let bottom_number = document.getElementById("numero-pagina-bottom");
+        top_number.innerText = actualPage;
+        bottom_number.innerText = actualPage;
+        getProductos(actualPage);
+        console.log(cantidadProductos);
+    }
+    else {
+        console.log("No hay más páginas");
+    }
 }
 
 function previousPage() {
