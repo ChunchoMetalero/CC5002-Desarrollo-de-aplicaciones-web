@@ -17,11 +17,11 @@
             <a class="navbar-page" href="/ver-pedidos">Ver Pedidos</a>
             <a class="navbar-page" href="/ver-productos">Ver Productos</a>
         </div>
+        <section class="main-container">
+            {% block content %}{% endblock %} 
+            {% block javascript %}{% endblock %}
+        </section>
     </body>
-    <section class="main-container">
-        {% block content %}{% endblock %} 
-        {% block javascript %}{% endblock %}
-    </section>
 </html>
     
     

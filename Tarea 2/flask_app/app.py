@@ -4,11 +4,18 @@ from utils.pages import *
 from database import db
 from werkzeug.utils import secure_filename
 from datetime import datetime
+from PIL import Image
 import hashlib
 import filetype
 import os
 
 UPLOAD_FOLDER = 'static/uploads'
+UPLOAD_FOLDER_120 = 'static/uploads/120x120'
+UPLOAD_FOLDER_640 = 'static/uploads/640x480'
+UPLOAD_FOLDER_1280 = 'static/uploads/1280x1024'
+sizes = [(120, 120), (640,480 ), (1280, 1024)]
+
+
 
 app = Flask(__name__)
 
@@ -16,6 +23,9 @@ app.secret_key = "s3cr3t_k3y"
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000 # 16 MB
+app.config['UPLOAD_FOLDER_120'] = UPLOAD_FOLDER_120
+app.config['UPLOAD_FOLDER_640'] = UPLOAD_FOLDER_640
+app.config['UPLOAD_FOLDER_1280'] = UPLOAD_FOLDER_1280
 
 @app.errorhandler(413)
 def request_entity_too_large(error):
@@ -33,6 +43,13 @@ def error404():
 def index():
     return render_template("app/index.html")
 
+@app.route("/<status>", methods=["GET", "POST"])
+def index_param(status):
+    if status == "success":
+        return render_template("app/index.html", status=str(status))
+    else:
+        return error404()
+
 @app.route("/agregar-producto", methods=["GET", "POST"])
 def agregar_producto():
     if request.method == "POST":
@@ -48,7 +65,7 @@ def agregar_producto():
         email_productor = request.form.get("email-productor")
         telefono_productor = request.form.get("telefono-productor")
 
-        if validate_form(nombre, email_productor, telefono_productor, region, comuna, productos, tipo):
+        if validate_form(nombre, email_productor, telefono_productor, region, comuna, productos, tipo, archivos):
 
             last_id = db.insertar_producto(tipo, c_desc, comuna, nombre, email_productor, telefono_productor)
 
@@ -68,7 +85,21 @@ def agregar_producto():
                 archivo.save(os.path.join(app.config["UPLOAD_FOLDER"], img_filename))
                 db.insertar_fotos_producto(app.config["UPLOAD_FOLDER"], img_filename, last_id)
 
-            return index()
+                for size in sizes:
+                    if size == (120, 120):
+                        with Image.open(os.path.join(app.config["UPLOAD_FOLDER"], img_filename)) as img:
+                            resized_img = img.resize(size)
+                            resized_img.save(os.path.join(app.config["UPLOAD_FOLDER_120"], img_filename))
+                    elif size == (640, 480):
+                        with Image.open(os.path.join(app.config["UPLOAD_FOLDER"], img_filename)) as img:
+                            resized_img = img.resize(size)
+                            resized_img.save(os.path.join(app.config["UPLOAD_FOLDER_640"], img_filename))
+                    elif size == (1280, 1024):
+                        with Image.open(os.path.join(app.config["UPLOAD_FOLDER"], img_filename)) as img:
+                            resized_img = img.resize(size)
+                            resized_img.save(os.path.join(app.config["UPLOAD_FOLDER_1280"], img_filename))
+                    
+            return index_param("success")
         else:
             return render_template("app/agregar-producto.html")
     
@@ -214,12 +245,13 @@ def producto():
             "descripcion": info_prod[7],
             "frutas_verduras": [],
             "fotos": []
+            
         }
         for prod in prods:
             productos_dict[id_producto]["frutas_verduras"].append(prod[1])
 
         for foto in fotos:
-            productos_dict[id_producto]["fotos"].append({"ruta": foto[0], "nombre_foto": foto[1]})
+            productos_dict[id_producto]["fotos"].append({"ruta": foto[0] , "nombre_foto": foto[1]})
 
         data.append(productos_dict[id_producto])
         return jsonify(data)

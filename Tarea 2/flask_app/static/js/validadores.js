@@ -23,12 +23,31 @@ validarProductos = (productos) => {
 }
 
 validarFotos = (fotos) => {
+    const tiposPermitidos = ['image/jpeg', 'image/png']; // Tipos MIME permitidos
+    const maxSize = 15000000; // Tamaño máximo permitido (en bytes)
+
     if (fotos.length === 0) {
         errores.push('Debe seleccionar al menos una foto');
         return false;
     }
     if (fotos.length > 3) {
         errores.push('Solo puede seleccionar hasta 3 fotos');
+        return false;
+    }
+    
+    let totalSize = 0;
+    for (let i = 0; i < fotos.length; i++) {
+        const foto = fotos[i];
+        totalSize += foto.size;
+        
+        // Verificar el tipo MIME de la foto
+        if (!tiposPermitidos.includes(foto.type)) {
+            errores.push('El archivo "' + foto.name + '" no es una imagen válida');
+            return false;
+        }
+    }
+    if (totalSize > maxSize) {
+        errores.push('El tamaño total de las fotos no puede superar los 15MB');
         return false;
     }
     return true;
@@ -71,6 +90,9 @@ validarCorreoProductor = (correo) => {
 
 validarTelefonoProductor = (telefono) => {
     // largo minimo 9 y maximo 15
+    if (telefono.length === 0) {
+        return true;
+    }
     if (telefono.length < 9 || telefono.length > 15) {
         errores.push('El teléfono del productor debe tener entre 9 y 15 carácteres');
         return false;
@@ -86,6 +108,8 @@ validarTelefonoProductor = (telefono) => {
 
 
 validarAgregarProducto = () => {
+    errores = []; // Reinicia el array de errores
+
     const tipo = document.getElementById('tipo-prod').value;
     const productos = Array.from(document.getElementById('producto-select').selectedOptions).map(option => option.value);
     const fotos = document.getElementById('imagen').files;
@@ -94,10 +118,25 @@ validarAgregarProducto = () => {
     const nombre = document.getElementById('nombre-prod').value;
     const correo = document.getElementById('email-prod').value;
     const telefono = document.getElementById('telefono-prod').value;
-    return validarTipoProducto(tipo) && validarProductos(productos) && validarFotos(fotos) && validarRegion(region) && validarComuna(comuna) && validarNombreProductor(nombre) && validarCorreoProductor(correo) && validarTelefonoProductor(telefono);
+
+    let isValid = true;
+
+    if (!validarTipoProducto(tipo)) isValid = false;
+    if (!validarProductos(productos)) isValid = false;
+    if (!validarFotos(fotos)) isValid = false;
+    if (!validarRegion(region)) isValid = false;
+    if (!validarComuna(comuna)) isValid = false;
+    if (!validarNombreProductor(nombre)) isValid = false;
+    if (!validarCorreoProductor(correo)) isValid = false;
+    if (!validarTelefonoProductor(telefono)) isValid = false;
+
+    return isValid;
 }
 
+
 validarAgregarPedido = () => {
+    errores = []; // Reinicia el array de errores
+
     const tipo = document.getElementById('tipo-prod').value;
     const productos = Array.from(document.getElementById('producto-select').selectedOptions).map(option => option.value);
     const region = document.getElementById('region-select').value;
@@ -105,14 +144,32 @@ validarAgregarPedido = () => {
     const nombre = document.getElementById('nombre-comp').value;
     const correo = document.getElementById('email-comp').value;
     const telefono = document.getElementById('telefono-comp').value;
-    return validarTipoProducto(tipo) && validarProductos(productos) && validarRegion(region) && validarComuna(comuna) && validarNombreProductor(nombre) && validarCorreoProductor(correo) && validarTelefonoProductor(telefono);
+
+    let isValid = true;
+
+    if (!validarTipoProducto(tipo)); isValid = false;
+    if (!validarProductos(productos)); isValid = false;
+    if (!validarRegion(region)); isValid = false;
+    if (!validarComuna(comuna)); isValid = false;
+    if (!validarNombreProductor(nombre)); isValid = false;
+    if (!validarCorreoProductor(correo)); isValid = false;
+    if (!validarTelefonoProductor(telefono)); isValid = false;
+
+    return isValid;
 }
 
 
 // Función para mostrar la alerta de error
-function mostrarAlertaError(error) {
+function mostrarAlertaError(errors) {
     let errorAlert = document.getElementById("errorAlert");
-    errorAlert.innerHTML = error;
+    errorAlert.innerHTML = ""; // Limpiar el contenido anterior
+    let ul = document.createElement('ul'); // Crear una lista sin orden
+    errors.forEach(error => {
+        let li = document.createElement('li'); // Crear un elemento de lista
+        li.textContent = error;
+        ul.appendChild(li); // Agregar el mensaje de error como elemento de lista
+    });
+    errorAlert.appendChild(ul); // Agregar la lista de errores al contenedor
     errorAlert.classList.remove("hidden");
 }
 
@@ -150,17 +207,13 @@ document.getElementById('agregar').addEventListener('click', function() {
         if (validarAgregarPedido()) {
             showConfirmModal(mensajeConfirmacionPedido, alertaExitoPedido);
         } else {
-            for (let i = 0; i < errores.length; i++) {
-                mostrarAlertaError(errores[i]); // Muestra la alerta de error
-            }
+            mostrarAlertaError(errores); // Muestra la alerta de error
         }
     } else {
         if (validarAgregarProducto()) {
             showConfirmModal(mensajeConfirmacionProducto, alertaExitoProducto);
         } else {
-            for (let i = 0; i < errores.length; i++) {
-                mostrarAlertaError(errores[i]); // Muestra la alerta de error
-            }
+            mostrarAlertaError(errores); // Muestra la alerta de error
         }
     }
 });

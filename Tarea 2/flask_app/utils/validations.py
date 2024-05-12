@@ -86,9 +86,43 @@ def validate_email(email):
     
 def validate_celular(celular):
     if celular.isdigit() and 9 <= len(celular) <= 15:
-        return celular
+        return True
+    elif celular == "":
+        return True
+    else:
+        return False
     
-def validate_form(nombre_productor, email, celular, region_id, comuna_id, products, product_type):
+def validate_images(archivos):
+    ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
+    ALLOWED_MIMETYPES = {"image/jpeg", "image/png", "image/gif"} 
+
+    # check if the browser submitted more than 3 files
+    if len(archivos) > 3:
+        return False
+    
+    # check if the browser submitted an empty file
+    for archivo in archivos:
+        if archivo is None:
+            return False
+
+        # check if the browser submitted an empty file
+        if archivo.filename == "":
+            return False
+
+        # check file extension
+        ftype_guess = filetype.guess(archivo)
+        if not ftype_guess:
+            return False
+        else:
+            if ftype_guess.extension not in ALLOWED_EXTENSIONS:
+                return False
+            # check mimetype
+            if ftype_guess.mime not in ALLOWED_MIMETYPES:
+                return False     
+            
+    return True
+    
+def validate_form(nombre_productor, email, celular, region_id, comuna_id, products, product_type, archivos):
     if not validate_nombre_productor(nombre_productor):
         print("Nombre productor")
         return False
@@ -103,6 +137,9 @@ def validate_form(nombre_productor, email, celular, region_id, comuna_id, produc
         return False
     if not validate_products(products, product_type):
         print("Products")
+        return False
+    if not validate_images(archivos):
+        print("Images")
         return False
     return True
 

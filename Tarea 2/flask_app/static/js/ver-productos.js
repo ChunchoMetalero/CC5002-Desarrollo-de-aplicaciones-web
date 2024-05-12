@@ -23,7 +23,7 @@ function getProductos(page) {
                 fila += "<td>" + producto.region + "</td>";
                 fila += "<td>" + producto.comuna + "</td>";
                 let primeraFoto = producto.fotos[0];
-                fila += "<td><img src='" + primeraFoto.ruta + "/" + primeraFoto.nombre_foto + "' alt='Product Image' height='120px' width='120px'></td>";
+                fila += "<td><img src='" + primeraFoto.ruta + "/120x120/" + primeraFoto.nombre_foto + "' alt='Product Image'></td>";
                 fila += "</tr>";
                 cantidadProductos = producto.cantidad;
 

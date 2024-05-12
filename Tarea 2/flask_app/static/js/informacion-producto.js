@@ -12,7 +12,11 @@ let producto = localStorage.getItem("producto");
             document.getElementById("comunaProducto").textContent = producto[0].comuna;
             document.getElementById("productorProducto").textContent = producto[0].productor;
             document.getElementById("emailProducto").textContent = producto[0].email;
-            document.getElementById("telefonoProducto").textContent = producto[0].telefono;
+            if (producto[0].telefono == "") {
+                document.getElementById("telefonoProducto").textContent = "No disponible";
+            } else {
+                document.getElementById("telefonoProducto").textContent = producto[0].telefono;
+            }
             // Agrega más líneas para los otros campos del producto (precio, cantidad, categoría, etc.)
 
             // Si tienes la URL de la imagen, puedes establecerla así:
@@ -20,27 +24,23 @@ let producto = localStorage.getItem("producto");
             for (let i = 0; i < producto[0].fotos.length; i++) {
                 let foto = producto[0].fotos[i];
                 let img = document.createElement("img");
-                img.src = foto.ruta + "/" + foto.nombre_foto;
+                img.src = foto.ruta + "/640x480/" + foto.nombre_foto;
                 img.id = "imagenProducto-" + i;
                 img.alt = "Imagen del Producto";
                 img.classList.add("imagen");
-                img.width = 640;
-                img.height = 480;
                 img.addEventListener('click', function() {
-                    resize(img.id);
+                    resize(img.id, foto);
                 });
                 div = document.getElementById("imagenProducto")
                 div.appendChild(img);
             }
         }
 
-function resize(id) {
+function resize(id, foto) {
     let imagen = document.getElementById(id);
-    if (imagen.width == 1280) {
-        imagen.width = 640;
-        imagen.height = 480;
+    if (imagen.width == 640) {
+        imagen.src = foto.ruta + "/1280x1024/" + foto.nombre_foto;
     } else {
-        imagen.width = 1280;
-        imagen.height = 1024;
+        imagen.src = foto.ruta + "/640x480/" + foto.nombre_foto;
     }
 }
