@@ -51,3 +51,27 @@
 .hidden {
     display: none; /* Oculta las alertas por defecto */
 }
+
+.producto-checkboxes input[type="checkbox"] {
+    appearance: none; 
+    width: 20px; 
+    height: 20px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    background-color: rgb(224, 238, 230); 
+    margin-right: 5px; 
+    cursor: pointer; 
+    vertical-align: middle; 
+}
+
+/* Estilo del checkbox cuando está marcado */
+.producto-checkboxes input[type="checkbox"]:checked {
+    background-color: rgb(178, 243, 203); 
+    border-color: #6B9080; 
+}
+
+.producto-checkboxes label {
+    font-size: 110%;
+    vertical-align: middle; 
+}
+

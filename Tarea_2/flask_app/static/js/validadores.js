@@ -111,7 +111,7 @@ validarAgregarProducto = () => {
     errores = []; // Reinicia el array de errores
 
     const tipo = document.getElementById('tipo-prod').value;
-    const productos = Array.from(document.getElementById('producto-select').selectedOptions).map(option => option.value);
+    let productos = document.querySelectorAll('input[name=Producto]:checked');
     const fotos = document.getElementById('imagen').files;
     const region = document.getElementById('region-select').value;
     const comuna = document.getElementById('comuna-select').value;

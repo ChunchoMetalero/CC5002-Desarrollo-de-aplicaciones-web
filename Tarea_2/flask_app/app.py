@@ -27,6 +27,10 @@ app.config['UPLOAD_FOLDER_120'] = UPLOAD_FOLDER_120
 app.config['UPLOAD_FOLDER_640'] = UPLOAD_FOLDER_640
 app.config['UPLOAD_FOLDER_1280'] = UPLOAD_FOLDER_1280
 
+@app.errorhandler(400)
+def bad_request(error):
+    return error400()
+
 @app.errorhandler(413)
 def request_entity_too_large(error):
     return 'File exceeds the maximum file size allowed', 413
@@ -34,6 +38,10 @@ def request_entity_too_large(error):
 @app.errorhandler(404)
 def page_not_found(error):
     return error404()
+
+@app.errorhandler(400)
+def error400():
+    return render_template("app/error400.html")
 
 @app.route("/error404", methods=["GET"])
 def error404():
@@ -101,7 +109,7 @@ def agregar_producto():
                     
             return index_param("success")
         else:
-            return render_template("app/agregar-producto.html")
+            return error400()
     
     elif request.method == "GET":
         return render_template("app/agregar-producto.html")
@@ -163,7 +171,7 @@ def comunas():
             data.append(comuna_dict)
         return jsonify(data)
     else:
-        error404()
+        error400()
 
 # Gets Ver-Productos
 
