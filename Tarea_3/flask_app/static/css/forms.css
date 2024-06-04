@@ -1,0 +1,77 @@
+.grupo-input {
+    /* Con lo comentado queda mas bonito, pero se pierden los tamaños de las cajas :( */
+    /*display: flex;
+    flex-direction: column; */
+    margin: 1em;
+    margin-top: 1.5%;
+}
+
+.grupo-input label {
+    font-size: 110%;    
+}
+
+.button {
+    font-family: "Roboto", sans-serif;
+    background-color: rgb(178, 243, 203);
+    text-align: center;
+    padding: .5em;
+    border: .2em black solid;
+    box-shadow: .3em .3em 0px 0px rgb(16, 158, 47);
+    border-radius: .3em;
+    margin: 1em;
+}
+
+.button:hover {
+    font-family: "Roboto", sans-serif;
+    transition: 0.2s ease;
+    background-color: #7cfac6;
+    color: black;
+}
+
+/* Estilos para las alertas */
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 2em;
+}
+
+.error {
+    background-color: #f44336; /* Color rojo */
+    color: white;
+}
+
+.success {
+    background-color: #4CAF50; /* Color verde */
+    color: white;
+}
+
+.hidden {
+    display: none; /* Oculta las alertas por defecto */
+}
+
+.producto-checkboxes input[type="checkbox"] {
+    appearance: none; 
+    width: 20px; 
+    height: 20px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    background-color: rgb(224, 238, 230); 
+    margin-right: 5px; 
+    cursor: pointer; 
+    vertical-align: middle; 
+}
+
+/* Estilo del checkbox cuando está marcado */
+.producto-checkboxes input[type="checkbox"]:checked {
+    background-color: rgb(178, 243, 203); 
+    border-color: #6B9080; 
+}
+
+.producto-checkboxes label {
+    font-size: 110%;
+    vertical-align: middle; 
+}
+

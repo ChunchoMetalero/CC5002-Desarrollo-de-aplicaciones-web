@@ -1,0 +1,74 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.table th {
+    background-color: rgb(16, 158, 47);
+    color: white;
+}
+
+.table td {
+    padding: 8px;
+    text-align: center;
+    width: 20%;
+}
+
+.table tr:nth-child(even) {
+    background-color: rgba(178, 243, 203, 0);
+}
+
+.table tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.267);
+}
+
+.table tr:hover {
+    background-color: rgb(178, 243, 203);
+    transition: 0.2s ease;
+    border: 1px solid #000022;
+    box-shadow: 3px 3px 0px 0px rgb(16, 158, 47);
+    padding: 0.4em 0.8em;
+    box-sizing: border-box;
+}
+
+.desc-top-selector {
+    display: flex;
+    align-items: center;
+}
+
+.top-page-selector {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Alinea el selector al lado derecho */
+}
+
+.bottom-page-selector {
+    align-items: center;
+    justify-content: flex-end;
+    display: flex;
+}
+
+.bottom-page-selector button , .top-page-selector button {
+    font-family: "Roboto", sans-serif;
+    background-color: rgb(178, 243, 203);
+    text-align: center;
+    padding: .5em;
+    border: .2em black solid;
+    box-shadow: .3em .3em 0px 0px rgb(16, 158, 47);
+    border-radius: .3em;
+    margin: 1em;
+}
+
+.bottom-page-selector button:hover , .top-page-selector button:hover {
+    font-family: "Roboto", sans-serif;
+    transition: 0.2s ease;
+    background-color: #7cfac6;
+    color: black;
+}

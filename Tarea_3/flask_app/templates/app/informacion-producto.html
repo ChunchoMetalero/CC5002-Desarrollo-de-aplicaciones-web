@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+
+{% block css %} 
+    <link rel="stylesheet" href="../static/css/info.css">
+{% endblock %}
+
+{% block title %}
+    <title>Feria Online OMG - Informacion del Producto</title>
+{% endblock %}
+
+{% block content %}
+    <div id="info" class="content">
+        <h1> Informacion del Producto </h1>
+        <p> Tipo: <span id="tipoProducto"></span></p>
+        <p> Producto(s): <span id="nombreProducto"></span></p>
+        <p> Descripcion: <span id="descripcionProducto"></span></p>
+        <p> Region: <span id="regionProducto"></span></p>
+        <p> Comuna: <span id="comunaProducto"></span></p>
+        <p> Productor: <span id="productorProducto"></span></p>
+        <p> Email: <span id="emailProducto"></span></p>
+        <p> Telefono: <span id="telefonoProducto"></span></p>
+    </div>
+    <div id="imagenProducto"> </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="../static/js/informacion-producto.js"></script>
+{% endblock %}
+

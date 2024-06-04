@@ -1,0 +1,31 @@
+{
+    "insertar_producto": "INSERT INTO producto (tipo, descripcion, comuna_id, nombre_productor, email_productor, celular_productor) VALUES (%s,%s,%s,%s,%s,%s);",
+    "insertar_pedido": "INSERT INTO pedido (tipo, descripcion, comuna_id, nombre_comprador, email_comprador, celular_comprador) VALUES (%s,%s,%s,%s,%s,%s);",
+    "obtener_lista_frutas": "SELECT id, nombre FROM tipo_verdura_fruta WHERE id<38;",
+    "obtener_lista_verduras": "SELECT id, nombre FROM tipo_verdura_fruta WHERE id>37;",
+    "obtener_lista_regiones": "SELECT id, nombre FROM region;",
+    "obtener_comunas_region": "SELECT id, nombre FROM comuna WHERE region_id=%s;",
+    "obtener_ultimo_id_producto": "SELECT LAST_INSERT_ID();",
+    "obtener_ultimo_id_pedido": "SELECT LAST_INSERT_ID();",
+    "insertar_producto_verdura_fruta": "INSERT INTO producto_verdura_fruta (producto_id, tipo_verdura_fruta_id) VALUES (%s,%s);",
+    "insertar_fotos_producto": "INSERT INTO foto (ruta_archivo, nombre_archivo, producto_id) VALUES (%s,%s,%s);",
+    "insertar_pedido_verdura_fruta": "INSERT INTO pedido_verdura_fruta (pedido_id, tipo_verdura_fruta_id) VALUES (%s,%s);",
+    "obtener_ultimos_productos_info": "select p.id, p.tipo, c.nombre as comuna, r.nombre as region from producto as p join comuna as c on p.comuna_id = c.id join region as r on r.id = c.region_id ORDER BY id DESC LIMIT %s, 5;",
+    "obtener_ultimos_pedidos_info": "select p.id, p.tipo, c.nombre as comuna, r.nombre as region, p.nombre_comprador from pedido as p join comuna as c on p.comuna_id = c.id join region as r on r.id = c.region_id ORDER BY id DESC LIMIT %s, 5;",
+    "obtener_ultimas_fotos": "SELECT f.producto_id, f.ruta_archivo, f.nombre_archivo FROM foto AS f WHERE f.producto_id BETWEEN %s AND %s ORDER BY f.producto_id DESC;",
+    "obtener_ultimos_productos": "select pvf.producto_id as p_id, tvf.nombre from producto_verdura_fruta as pvf join tipo_verdura_fruta as tvf on tvf.id = pvf.tipo_verdura_fruta_id WHERE pvf.producto_id BETWEEN %s AND %s ORDER BY pvf.producto_id DESC;",
+    "obtener_ultimos_pedidos": "select pvf.pedido_id as p_id, tvf.nombre from pedido_verdura_fruta as pvf join tipo_verdura_fruta as tvf on tvf.id = pvf.tipo_verdura_fruta_id WHERE pvf.pedido_id BETWEEN %s AND %s ORDER BY pvf.pedido_id DESC;",
+    "obtener_cantidad_productos": "select count(id) from producto;",
+    "obtener_cantidad_pedidos": "select count(id) from pedido;",
+    "obtener_info_prod": "select p.id, p.tipo, c.nombre as comuna, r.nombre as region, p.nombre_productor, p.email_productor, p.celular_productor, p.descripcion from producto as p join comuna as c on p.comuna_id = c.id join region as r on r.id = c.region_id where p.id = %s;",
+    "obtener_info_pedido": "select p.id, p.tipo, c.nombre as comuna, r.nombre as region, p.nombre_comprador, p.email_comprador, p.celular_comprador, p.descripcion from pedido as p join comuna as c on p.comuna_id = c.id join region as r on r.id = c.region_id where p.id = %s;",
+    "obtener_fotos_prod": "SELECT f.ruta_archivo, f.nombre_archivo FROM foto AS f WHERE f.producto_id = %s;",
+    "obtener_tvf_prod": "select pvf.producto_id as p_id, tvf.nombre from producto_verdura_fruta as pvf join tipo_verdura_fruta as tvf on tvf.id = pvf.tipo_verdura_fruta_id WHERE pvf.producto_id = %s;",
+    "obtener_tvf_pedido": "select pvf.pedido_id as p_id, tvf.nombre from pedido_verdura_fruta as pvf join tipo_verdura_fruta as tvf on tvf.id = pvf.tipo_verdura_fruta_id WHERE pvf.pedido_id = %s;",
+    "verificar_comuna_region": "select c.nombre from comuna as c join region as r on r.id = c.region_id where c.id = %s and r.id = %s;",
+    "verificar_tipo_verdura_fruta": "select nombre from tipo_verdura_fruta where id = %s;",
+    "prod_stats": "select prod.tipo, count(prod.id) as cantidad from producto as prod group by prod.tipo;",
+    "pedido_stats": "select c.nombre, count(pedido.id) as cantidad from pedido as pedido join comuna as c on c.id = pedido.comuna_id group by c.nombre;"
+}
+
+

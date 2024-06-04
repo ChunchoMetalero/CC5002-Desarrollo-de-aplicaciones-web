@@ -1,0 +1,46 @@
+{% extends 'app/base.html' %}
+
+{% block css %} 
+    <link rel="stylesheet" href="../static/css/table.css">
+{% endblock %}
+
+{% block title %}
+    <title>Feria Online OMG - Ver Productos</title>
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <h1> Ver Productos </h1>
+        <div class="desc-top-selector">
+            <p> Aquí podrás ver los productos disponibles en la Feria OMG </p>
+            <div id="selector-pagina-top" class="top-page-selector">
+                <button id="pagina-anterior-top">Anterior</button>
+                <span id="numero-pagina-top">1</span>
+                <button id="pagina-siguiente-top">Siguiente</button>
+            </div>
+        </div>    
+        <table id="tabla-productos" class="table">
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Producto(s)</th>
+                    <th>Region</th>
+                    <th>Comuna</th>
+                    <th>Fotos</th>
+                </tr>
+            </thead>
+            <tbody id="lista-productos">
+            </tbody>
+        </table>
+        <div id="selector-pagina-bottom" class="bottom-page-selector">
+            <button id="pagina-anterior-bottom">Anterior</button>
+            <span id="numero-pagina-bottom">1</span>
+            <button id="pagina-siguiente-bottom">Siguiente</button>
+        </div>
+    </div>
+    
+{% endblock %}
+
+{% block javascript %}
+    <script src="../static/js/ver-productos.js"></script>
+{% endblock %}

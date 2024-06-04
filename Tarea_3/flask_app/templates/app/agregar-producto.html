@@ -1,0 +1,86 @@
+{% extends 'app/base.html' %}
+
+{% block css %} 
+    <link rel="stylesheet" href="../static/css/forms.css">
+    <link rel="stylesheet" href="../static/css/modal.css">
+{% endblock %}
+
+{% block title %}
+    <title>Feria Online OMG - Agregar Producto</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <h1> Agregar Producto(s) </h1>
+    <p> Aquí podrás agregar un producto a la Feria OMG </p>
+    <form class="formulario" id="agregar-producto" method="post" enctype="multipart/form-data">
+        <div id="tipo-producto" class="grupo-input">
+            <label for="tipo-prod">Tipo de producto</label>
+            <select name="tipo-producto" id="tipo-prod">
+                <option value="none">Seleccione una opción</option>
+                <option value="fruta">Fruta</option>
+                <option value="verdura">Verdura</option>
+            </select>
+        </div>
+        <div id="Producto" class="grupo-input">
+            <div id="prods-checks" class="producto-checkboxes">
+            <div>
+                <label for="producto-checkboxes">Producto(s):</label>
+            </div>
+            <div id="producto-checkboxes"></div>
+            </div>
+        </div>
+        <div id="Descripcion" class="grupo-input">
+            <div>
+                <label for="des">Descripción:</label>
+            </div>
+            <textarea name="Descripcion" id="des" cols="50" rows="4"></textarea>
+        </div>
+        <div id="subirImagen" class="grupo-input">
+            <label for="imagen">Subir Imagen:</label>
+            <input type="file" id="imagen" name="Imagen" multiple>
+        </div>
+        <div id="Regiones" class="grupo-input">
+            <label for="region-select">Regiones:</label>
+            <select name="Regiones" id="region-select">
+                <option value="none">Seleccione una opción</option>
+            </select>
+        </div>
+        <div id="Comunas" class="grupo-input">
+            <label for="comuna-select">Comunas:</label>
+            <select name="Comunas" id="comuna-select">
+                <option value="none">Seleccione una Región primero</option>
+            </select>
+        </div>
+        <div id="Nombre-Productor" class="grupo-input">
+            <label for="nombre-prod">Nombre del productor:</label>
+            <input type="text" id="nombre-prod" name="Nombre-Productor" size="80">
+        </div>
+        <div id="email-productor" class="grupo-input">
+            <label for="email-prod">Email del productor:</label>
+            <input type="email" id="email-prod" name="email-productor" size="30">
+        </div>
+        <div id="telefono-productor" class="grupo-input">
+            <label for="telefono-prod">Telefono del productor:</label>
+            <input type="tel" id="telefono-prod" name="telefono-productor" size="15">
+        </div>
+        <div id="confirmModal" class="modal">
+            <div class="modal-content">
+                <p id="mensajeConfirmacion"></p>
+                <button class="modalButton" id="confirmYes" type="submit">Sí, confirmo</button>
+                <button class="modalButton" id="confirmNo">No, quiero volver al formulario</button>
+            </div>
+        </div>
+    </form>
+    <div id="errorAlert" class="alert error hidden"></div>
+    <div id="successAlert" class="alert success hidden"></div>
+    <button class="button" id="agregar">Agregar Producto(s)</button>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="../static/js/agregar-producto.js"></script>
+    <script src="../static/js/validadores.js"></script>
+{% endblock %}

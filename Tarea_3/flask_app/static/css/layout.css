@@ -1,0 +1,58 @@
+:root {
+    --black-color: #000022;
+    --background-color: rgba(232, 230, 240, 1); /* Cambia el último valor (0.7) para ajustar la opacidad */
+    --pink-color: #FC2865;
+    --background-opacity: 0.7; /* Cambia el valor para ajustar la opacidad */
+}
+
+body {
+    background-image: linear-gradient(rgba(232, 230, 240, var(--background-opacity)), rgba(232, 230, 240, var(--background-opacity))), url(../img/Background.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.navbar {
+    position: fixed;
+    display: flex;
+    width: 97%;
+    justify-content: flex-start;
+    align-items: center;
+    background: rgb(178, 243, 203);
+    border: .2em solid var(--black-color);
+    border-radius: .25em;
+    margin: 1em 1em 2em 1em;
+    box-shadow: .3em .3em 0px 0px rgb(16, 158, 47);
+    height: 3em;
+}
+
+.navbar > * {
+    color: var(--black-color);
+    font-family: "Roboto", sans-serif;
+}
+
+.navbar a {
+    position: relative;
+    text-decoration: none;
+    margin: 0 2em;
+    padding: .25em;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.navbar a:hover{
+    color: black;
+    background-color: #7cfac6;
+    transition: 0.2s ease;
+    border: .1em solid var(--black-color);
+    box-shadow: .3em .3em 0px 0px rgb(16, 158, 47); /* Aumenta el tamaño del efecto de sombra */
+    padding: 0.4em 0.8em; /* Aumenta el padding para hacer el área de hover más grande */
+    box-sizing: border-box;
+}
+
+.content {
+    font-family: "Fira Code", monospace;
+    margin-left: 2em;
+    margin-right: 2em;
+    padding-top: 5em;
+}

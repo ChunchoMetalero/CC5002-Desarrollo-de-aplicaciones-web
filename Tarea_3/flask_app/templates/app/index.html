@@ -1,0 +1,22 @@
+{% extends 'app/base.html' %}
+
+{% block title %}
+    <title>Feria Online OMG</title>
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="../static/css/forms.css">
+{% endblock css %}
+
+
+{% block content %}    
+            <div class="content">
+                {% if status == 'success' %}
+                <div id="successAlert" class="alert success">
+                    <p>Hemos recibido el registro de producto. Muchas gracias.</p>
+                </div>
+                {% endif %}
+                <h1> Bienvenidos a la Feria Online OMG </h1>
+                <p> Aquí encontrarás todo lo que necesitas para tu hogar </p>
+            </div>
+{% endblock content %}

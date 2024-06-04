@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+
+{% block title %}
+    <title>Feria Online OMG - Ver Productos</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="../static/css/stats.css">
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <h1> Estadisticas de pedidos y productos </h1>
+        <div class="stats-container">
+            <figure class="highcharts-figure">
+                <div id="container">
+                    <div id="barchart"></div>
+                </div>
+            </figure>
+            <figure>
+                <div id="container">
+                    <div id="piechart"></div>
+                </div>
+            </figure>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="../static/js/stats.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+{% endblock %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <link rel="stylesheet" href="../static/css/layout.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto&display=swap" rel="stylesheet">
+        <meta charset="UTF-8">
+        {% block css %}{% endblock %}
+        {% block title %}{% endblock %}
+    </head>
+    <body>
+        <div class="navbar">
+            <a class="navbar-page" href="/">Inicio</a> 
+            <a class="navbar-page" href="/agregar-pedido">Agregar Pedido</a>
+            <a class="navbar-page" href="/agregar-producto">Agregar Producto</a>
+            <a class="navbar-page" href="/ver-pedidos">Ver Pedidos</a>
+            <a class="navbar-page" href="/ver-productos">Ver Productos</a>
+            <a class="navbar-page" href="/stats">Ver Estadisticas</a>
+        </div>
+        <section class="main-container">
+            {% block content %}{% endblock %} 
+            {% block javascript %}{% endblock %}
+        </section>
+    </body>
+</html>
+    
+    
