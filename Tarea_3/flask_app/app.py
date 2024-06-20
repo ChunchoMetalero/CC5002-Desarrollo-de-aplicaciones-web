@@ -53,7 +53,7 @@ def index():
 
 @app.route("/<status>", methods=["GET", "POST"])
 def index_param(status):
-    if status == "success":
+    if status == "success1" or status == "success2":
         return render_template("app/index.html", status=str(status))
     else:
         return error404()
@@ -107,7 +107,7 @@ def agregar_producto():
                             resized_img = img.resize(size)
                             resized_img.save(os.path.join(app.config["UPLOAD_FOLDER_1280"], img_filename))
                     
-            return index_param("success")
+            return index_param("success1")
         else:
             return error400()
     
@@ -337,7 +337,7 @@ def agregar_pedido():
             for producto in productos:
                 db.insertar_pedido_verdura_fruta(last_id, producto)
             
-            return index_param("success")
+            return index_param("success2")
         else:
             return error400()
 

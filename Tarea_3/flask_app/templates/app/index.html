@@ -11,9 +11,14 @@
 
 {% block content %}    
             <div class="content">
-                {% if status == 'success' %}
+                {% if status == 'success1' %}
                 <div id="successAlert" class="alert success">
                     <p>Hemos recibido el registro de producto. Muchas gracias.</p>
+                </div>
+                {% endif %}
+                {% if status == 'success2' %}
+                <div id="successAlert" class="alert success">
+                    <p>Hemos recibido el registro de pedido. Muchas gracias.</p>
                 </div>
                 {% endif %}
                 <h1> Bienvenidos a la Feria Online OMG </h1>

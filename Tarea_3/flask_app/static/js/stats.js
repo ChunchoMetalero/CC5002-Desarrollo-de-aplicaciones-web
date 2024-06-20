@@ -3,11 +3,11 @@ fetch('/stats-productos')
     .then(response => response.json())
     .then(data => {
 
-        const categorias = data.map(item=> item.tipo);
-        const valores = data.map(item=> item.cantidad);
+        const categorias = data.map(item => item.tipo);
+        const valores = data.map(item => item.cantidad);
 
         // Configuración del gráfico de barras
-        Highcharts.chart('barchart', {
+        Highcharts.chart('barchart-1', {
             chart: {
                 type: 'bar'
             },
@@ -30,19 +30,15 @@ fetch('/stats-productos')
         });
     });
 
-
-
-
 fetch('/stats-pedidos')
     .then(response => response.json())
     .then(data => {
         // Transformación de los datos para Highcharts
-        const categorias = data.map(item=> item.comuna);
-        const valores = data.map(item=> item.cantidad);
-        
+        const categorias = data.map(item => item.comuna);
+        const valores = data.map(item => item.cantidad);
 
         // Configuración del gráfico circular
-        Highcharts.chart('piechart', {
+        Highcharts.chart('barchart-2', {
             chart: {
                 type: 'bar'
             },
@@ -51,6 +47,11 @@ fetch('/stats-pedidos')
             },
             xAxis: {
                 categories: categorias 
+            },
+            yAxis: {
+                title: {
+                    text: 'Valores'
+                }
             },
             series: [{
                 name: 'Pedidos',
