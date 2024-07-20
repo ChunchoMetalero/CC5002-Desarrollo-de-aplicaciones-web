@@ -1,0 +1,18 @@
+<div th:fragment="confession-box(conf)" class="conf-container">
+  <div class="conf-header">
+    <div class="conf-header-text">
+      <h2 class="title" th:text="${conf['conf_title']}"></h2>
+      <p class="conf-author" th:text="${conf['author']}"></p>
+    </div>
+  </div>
+  <div class="conf-content">
+    <p class="conf-text" th:text="${conf['content']}"></p>
+    <img
+      th:src="@{${conf['image_filename']}}"
+      alt="Placeholder Image"
+      width="150"
+      th:onclick="'openModal(this)'"
+      class="conf-image"
+    />
+  </div>
+</div>

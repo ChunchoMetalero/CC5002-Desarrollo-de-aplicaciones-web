@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <title>Confesiones 851</title>
+
+    <!-- CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/stats.css}"/>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div th:replace="~{fragments/nav :: navbar}"></div>
+
+    <section class="main-container">
+      <div class="stats-container">
+        <figure class="highcharts-figure">
+          <div id="container"></div>
+          <p class="highcharts-description">
+            El anterior grafico presenta el numero de confesiones enviadas a lo
+            largo del tiempo!
+          </p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script th:src="@{/js/stats.js}"></script>
+  </body>
+</html>
